@@ -7,4 +7,26 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<context:component-scan base-package="com.ict.di.classfile"></context:component-scan>	
+	
+	<!-- 태그로 bean(자바 객체) 빈 컨테이너에 추가 
+	id : 빈 컨테이너 내부에서 쓸 명칭, class : 구현하고 싶은 클랫의 이름을 패키지명부터-->
+	<bean id="rap" class="com.ict.di.classfile.Rapper"></bean>
+	
+	<bean id="rapStage" class="com.ict.di.classfile.Stage">
+		<!--<constructor-arg ref="rap"></constructor-arg>-->
+		<!-- setter 주입시는 property태그를 쓰고 
+		name에는 대입받을 멤버변수명, ref에는 집어넣을 bean의 명칭을 적습니다. -->
+		<property name="singer" ref="rap"></property>
+	</bean>
+	
+	<!-- broadCast 2개를 생성해주세요. 하나는 hiphopStage를 주입받고
+	다른 하나는 danceStage를 주입받도록 생성해주세요. BroadCast클래스 내부 @Autowired는 해체해주세요. -->
+	<bean id="rapBroadcast" class="com.ict.di.classfile.Broadcast">
+		<constructor-arg ref="rapStage"></constructor-arg>
+	</bean>
+
+	<!-- satelite -->
+	<bean id="rapSatellite" class="com.ict.di.classfile.Satellite">
+		<constructor-arg ref="rapBroadcast"></constructor-arg>
+	</bean>
 </beans>

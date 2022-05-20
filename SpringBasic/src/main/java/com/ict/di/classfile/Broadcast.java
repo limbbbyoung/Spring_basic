@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class Broadcast {
 	
-	@Autowired
+	//@Autowired
 	private Stage stage; // 무대에 서는 가수
 
 		// Stage를 입력받아야만 생성 가능합니다.
