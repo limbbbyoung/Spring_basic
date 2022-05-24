@@ -15,16 +15,16 @@ public class DIMainJavaver {
 		singer.sing();
 		
 		// Stage도 만들어서 공연을 시켜보세요.
-		Stage stage = new Stage(singer);
-		stage.perform();
+		//Stage stage = new Stage(singer);
+		//stage.perform();
 		
 		// Broadcast를 생성해서 방송무대를 송출해보겠습니다.
-		Broadcast broadcast1 = new Broadcast(stage);
-		broadcast1.broad();
+		//Broadcast broadcast1 = new Broadcast(stage);
+		//broadcast1.broad();
 		
 		//Satellite
-		Satellite satellite = new Satellite(broadcast1);
-		satellite.satelliteBroad();
+		//Satellite satellite = new Satellite(broadcast1);
+		//satellite.satelliteBroad();
 
 	}
 
