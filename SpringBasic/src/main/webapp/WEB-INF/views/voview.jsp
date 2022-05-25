@@ -7,15 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	 <form action="/ctof" method="post">
-     	<input type="number" name="C" placeholder="섭씨온도" required/>
-     	<input type="submit" value="화씨온도보기"/>
-     </form>
+	이름 : ${vo.name }<br/>
+	나이 : ${vo.age }<br/>
+	레벨 : ${vo.level }<br/>
+	능력 : ${vo.skill }
 </body>
 </html>
-
-
-
-
-
-

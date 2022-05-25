@@ -7,15 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	 <form action="/ctof" method="post">
-     	<input type="number" name="C" placeholder="섭씨온도" required/>
-     	<input type="submit" value="화씨온도보기"/>
-     </form>
+		<h1>${money}를 미국달러로 환전한 결과</h1>
+		<h1>${exchangeMoney } 달러입니다.</h1>
 </body>
 </html>
-
-
-
-
-
-

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,14 +8,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-	 <form action="/ctof" method="post">
-     	<input type="number" name="C" placeholder="¼·¾¾¿Âµµ" required/>
-     	<input type="submit" value="È­¾¾¿Âµµº¸±â"/>
-     </form>
+	<c:forEach var="list" items="${ids }">
+		<p>${list }</p>
+	</c:forEach>
 </body>
 </html>
-
-
 
 
 
