@@ -6,6 +6,8 @@ import java.sql.Connection;
 
 import javax.sql.DataSource;
 
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,13 +24,29 @@ public class OracleConnectionPoolTest {
 	@Autowired
 	private DataSource dataSource;
 	
-	@Test
+	// 하단에 SqlSessionFactory 선언 후 Autowired로 주입
+	@Autowired
+	private SqlSessionFactory sqlSessionFactory;
+	
+	// @Test를 주석처리하면 실행이 안됨
+	//@Test
 	public void testConnection() {
 		try(Connection con = 
 					dataSource.getConnection()){
 			log.info(con);
 			log.info("hikariCP connection");
 		} catch(Exception e) {
+			fail(e.getMessage());
+		}
+	}
+	
+	@Test
+	public void testMyBatis() {
+		try(SqlSession session = sqlSessionFactory.openSession();
+				Connection con = session.getConnection();){
+			log.info(session);
+			log.info(con);
+		} catch (Exception e) {
 			fail(e.getMessage());
 		}
 	}
