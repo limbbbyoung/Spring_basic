@@ -17,7 +17,7 @@ public class OjdbcConnectionTest {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 		} catch(Exception e) {
 			e.printStackTrace();
-		}
+	}
 	}
 
 
