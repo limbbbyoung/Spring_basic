@@ -23,4 +23,7 @@ public interface BoardMapper {
 	// update
 	public void update(BoardVO vo);
 	
+	// detail
+	public BoardVO getDetail(long bno);
+	
 }

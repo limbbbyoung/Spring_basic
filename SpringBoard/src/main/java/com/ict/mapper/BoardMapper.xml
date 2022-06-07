@@ -31,4 +31,10 @@
 		UPDATE board_tbl SET title=#{title}, content=#{content}, writer=#{writer},
 			updatedate=SYSDATE WHERE bno=#{bno}
 	</update>
+	
+	<select id="getDetail" resultType="com.ict.persistence.BoardVO">
+	<![CDATA[
+		SELECT * FROM board_tbl WHERE bno=#{bno}
+	]]>
+	</select>
 </mapper>

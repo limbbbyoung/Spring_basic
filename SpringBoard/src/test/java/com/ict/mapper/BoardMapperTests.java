@@ -18,7 +18,7 @@ public class BoardMapperTests {
 	@Autowired
 	private BoardMapper mapper;
 	
-	@Test
+	//@Test
 	public void getListTest() {
 		log.info(mapper.getList());
 	}
@@ -65,5 +65,11 @@ public class BoardMapperTests {
 		vo.setWriter("수정해서 넣는 글쓴이");
 		
 		mapper.update(vo);
+	}
+	
+	@Test
+	public void getDetailTest() {
+		long num = 42L;
+		mapper.getDetail(num);
 	}
 }

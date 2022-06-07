@@ -21,14 +21,9 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class OracleConnectionPoolTest {
 	
-	@Autowired
+	//@Autowired
 	private DataSource dataSource;
 	
-	// 하단에 SqlSessionFactory 선언 후 Autowired로 주입
-	@Autowired
-	private SqlSessionFactory sqlSessionFactory;
-	
-	// @Test를 주석처리하면 실행이 안됨
 	//@Test
 	public void testConnection() {
 		try(Connection con = 
@@ -39,6 +34,9 @@ public class OracleConnectionPoolTest {
 			fail(e.getMessage());
 		}
 	}
+	
+	@Autowired
+	private SqlSessionFactory sqlSessionFactory;
 	
 	@Test
 	public void testMyBatis() {
