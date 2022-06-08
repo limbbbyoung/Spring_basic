@@ -18,6 +18,8 @@
 					<th>글제목</th>
 					<th>글쓴이</th>
 					<th>글내용</th>
+					<th>쓴 날짜</th>
+					<th>수정 날짜</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -28,11 +30,14 @@
 						<td><a href="/board/detail?bno=${board.bno}">${board.title }</a></td>
 						<td>${board.writer }</td>
 						<td>${board.content }</td>
+						<td>${board.regdate }</td>
+						<td>${board.updatedate }</td>
 						</tr>						
 					</c:forEach>
 				</tr>
 			</tbody>
 		</table>
+		<a class="btn btn-primary" href="/board/insert">글 쓰기</a>
 	</div>
 </body>
 </html>

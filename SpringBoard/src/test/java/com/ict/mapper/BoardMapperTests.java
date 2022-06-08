@@ -23,29 +23,29 @@ public class BoardMapperTests {
 		log.info(mapper.getList());
 	}
 	
-	// insert¸¦ ½ÇÇàÇÒ Å×½ºÆ®ÄÚµå¸¦ ÇÏ´Ü¿¡ ÀÛ¼ºÇØº¸°Ú½À´Ï´Ù.
+	// insertë¥¼ ì‹¤í–‰í•  í…ŒìŠ¤íŠ¸ì½”ë“œë¥¼ í•˜ë‹¨ì— ìž‘ì„±í•´ë³´ê² ìŠµë‹ˆë‹¤.
     // @Test
 	public void testInsert() {
-		// ±Û ÀÔ·ÂÀ» À§ÇØ¼­ BoardVO Å¸ÀÔÀ» ¸Å°³·Î »ç¿ëÇÔ
-		// µû¶ó¼­ BoardVO¸¦ ¸¸µé¾î³õ°í
-		// setter·Î ±ÛÁ¦¸ñ, ±Ûº»¹®, ±Û¾´ÀÌ¸¸ ÀúÀåÇØµÐ Ã¤·Î
-		// mapper.insert(vo);¸¦ È£ÃâÇØ¼­ ½ÇÇà¿©ºÎ¸¦ È®ÀÎÇÏ¸é µÊ
-		// À§ ¼³¸íÀ» Åä´ë·Î ¾Æ·¡ vo¿¡ 6¹ø±Û¿¡ ´ëÇÑ Á¦¸ñ º»¹® ±Û¾´ÀÌ¸¦ ³Ö°í
-		// È£ÃâÇØÁÖ½Å ´ÙÀ½ ½ÇÁ¦·Î DB¿¡ ±ÛÀÌ µé¾î°¬´ÂÁö È®ÀÎÇØÁÖ¼¼¿ä.
+		// ê¸€ ìž…ë ¥ì„ ìœ„í•´ì„œ BoardVO íƒ€ìž…ì„ ë§¤ê°œë¡œ ì‚¬ìš©í•¨
+		// ë”°ë¼ì„œ BoardVOë¥¼ ë§Œë“¤ì–´ë†“ê³ 
+		// setterë¡œ ê¸€ì œëª©, ê¸€ë³¸ë¬¸, ê¸€ì“´ì´ë§Œ ì €ìž¥í•´ë‘” ì±„ë¡œ
+		// mapper.insert(vo);ë¥¼ í˜¸ì¶œí•´ì„œ ì‹¤í–‰ì—¬ë¶€ë¥¼ í™•ì¸í•˜ë©´ ë¨
+		// ìœ„ ì„¤ëª…ì„ í† ëŒ€ë¡œ ì•„ëž˜ voì— 6ë²ˆê¸€ì— ëŒ€í•œ ì œëª© ë³¸ë¬¸ ê¸€ì“´ì´ë¥¼ ë„£ê³ 
+		// í˜¸ì¶œí•´ì£¼ì‹  ë‹¤ìŒ ì‹¤ì œë¡œ DBì— ê¸€ì´ ë“¤ì–´ê°”ëŠ”ì§€ í™•ì¸í•´ì£¼ì„¸ìš”.
 		BoardVO vo = new BoardVO();
 		
-		// ÀÔ·ÂÇÒ ±Û¿¡ ´ëÇÑ Á¦¸ñ, ±Û¾´ÀÌ, º»¹®À» vo¿¡ ³Ö¾îÁÝ´Ï´Ù.
-		vo.setTitle("»õ·Î ³Ö´Â ±Û");
-		vo.setContent("»õ·Î ³Ö´Â º»¹®");
-		vo.setWriter("»õ·Î ³Ö´Â ±Û¾´ÀÌ");
+		// ìž…ë ¥í•  ê¸€ì— ëŒ€í•œ ì œëª©, ê¸€ì“´ì´, ë³¸ë¬¸ì„ voì— ë„£ì–´ì¤ë‹ˆë‹¤.
+		vo.setTitle("ìƒˆë¡œ ë„£ëŠ” ê¸€");
+		vo.setContent("ìƒˆë¡œ ë„£ëŠ” ë³¸ë¬¸");
+		vo.setWriter("ìƒˆë¡œ ë„£ëŠ” ê¸€ì“´ì´");
 		
 		log.info(vo);
 		mapper.insert(vo);
 	}
 	
-	// »èÁ¦ Å×½ºÆ®ÄÚµå¸¦ ÀÛ¼ºÇØÁÖ¼¼¿ä.
-	// Long bno ÆÄ¶ó¹ÌÅÍ¿¡ °ªÀ» Àü´ÞÇÒ¶§´Â Á¤¼öL°ú °°ÀÌ
-	// µÚ¿¡ LÀ» ºÙ¿©¾ßÇÕ´Ï´Ù.
+	// ì‚­ì œ í…ŒìŠ¤íŠ¸ì½”ë“œë¥¼ ìž‘ì„±í•´ì£¼ì„¸ìš”.
+	// Long bno íŒŒë¼ë¯¸í„°ì— ê°’ì„ ì „ë‹¬í• ë•ŒëŠ” ì •ìˆ˜Lê³¼ ê°™ì´
+	// ë’¤ì— Lì„ ë¶™ì—¬ì•¼í•©ë‹ˆë‹¤.
 	// @Test
 	public void testDelete() {
 		
@@ -58,11 +58,11 @@ public class BoardMapperTests {
 		
 		BoardVO vo = new BoardVO();
 		
-		// ÀÔ·ÂÇÒ ±Û¿¡ ´ëÇÑ Á¦¸ñ, ±Û¾´ÀÌ, º»¹®À» vo¿¡ ³Ö¾îÁÝ´Ï´Ù.
+		// ìž…ë ¥í•  ê¸€ì— ëŒ€í•œ ì œëª©, ê¸€ì“´ì´, ë³¸ë¬¸ì„ voì— ë„£ì–´ì¤ë‹ˆë‹¤.
 		vo.setBno(5L);
-		vo.setTitle("¼öÁ¤ÇØ¼­ ³Ö´Â Á¦¸ñ");
-		vo.setContent("¼öÁ¤ÇØ¼­ ³Ö´Â º»¹®");
-		vo.setWriter("¼öÁ¤ÇØ¼­ ³Ö´Â ±Û¾´ÀÌ");
+		vo.setTitle("ìˆ˜ì •í•´ì„œ ë„£ëŠ” ì œëª©");
+		vo.setContent("ìˆ˜ì •í•´ì„œ ë„£ëŠ” ë³¸ë¬¸");
+		vo.setWriter("ìˆ˜ì •í•´ì„œ ë„£ëŠ” ê¸€ì“´ì´");
 		
 		mapper.update(vo);
 	}

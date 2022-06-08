@@ -6,13 +6,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-// ÀÌ ÄÁÆ®·Ñ·¯ ³»ºÎ ¸ğµç ¸Ş¼Òµå´Â °øÅëÁÖ¼Ò·Î ¾Õ¿¡ /spring/À» °®½À´Ï´Ù.
+// ì´ ì»¨íŠ¸ë¡¤ëŸ¬ ë‚´ë¶€ ëª¨ë“  ë©”ì†Œë“œëŠ” ê³µí†µì£¼ì†Œë¡œ ì•ì— /spring/ì„ ê°–ìŠµë‹ˆë‹¤.
 @RequestMapping("/spring/")
 public class SpringController {
 	
 	@RequestMapping("")
 	public void basic() {
-		System.out.println("±âº» URL ÁÖ¼ÒÀÔ´Ï´Ù.");
+		System.out.println("ê¸°ë³¸ URL ì£¼ì†Œì…ë‹ˆë‹¤.");
 	}
 	
 	@RequestMapping(value="/base",

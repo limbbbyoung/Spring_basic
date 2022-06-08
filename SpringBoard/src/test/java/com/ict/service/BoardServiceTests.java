@@ -28,13 +28,13 @@ public class BoardServiceTests {
 			log.info(service.getList());
 		}
 		
-		// insertµµ Å×½ºÆ® ÇÑ ¹ø ÇØÁÖ¼¼¿ä.
+		// insertë„ í…ŒìŠ¤íŠ¸ í•œ ë²ˆ í•´ì£¼ì„¸ìš”.
 		// @Test
 		public void insertTest() {
 			BoardVO vo = new BoardVO();
-			vo.setTitle("µÎ¹øÂ°·Î »õ·Î ³Ö´Â ±Û");
-			vo.setContent("µÎ¹øÂ°·Î »õ·Î ³Ö´Â º»¹®");
-			vo.setWriter("µÎ¹øÂ°·Î »õ·Î ³Ö´Â ±Û¾´ÀÌ");
+			vo.setTitle("ë‘ë²ˆì§¸ë¡œ ìƒˆë¡œ ë„£ëŠ” ê¸€");
+			vo.setContent("ë‘ë²ˆì§¸ë¡œ ìƒˆë¡œ ë„£ëŠ” ë³¸ë¬¸");
+			vo.setWriter("ë‘ë²ˆì§¸ë¡œ ìƒˆë¡œ ë„£ëŠ” ê¸€ì“´ì´");
 			service.insert(vo);
 		}
 		
@@ -44,18 +44,18 @@ public class BoardServiceTests {
 			service.delete(num);
 		}
 		
-		// ¼öÁ¤±â´É Å×½ºÆ®
+		// ìˆ˜ì •ê¸°ëŠ¥ í…ŒìŠ¤íŠ¸
 		//@Test
 		public void updateTest() {
 			BoardVO vo = new BoardVO();
 			vo.setBno(42L);
-			vo.setTitle("¼öÁ¤µÈ Á¦¸ñ");
-			vo.setContent("¼öÁ¤µÈ º»¹®");
-			vo.setWriter("¼öÁ¤µÈ ±Û¾´ÀÌ");
+			vo.setTitle("ìˆ˜ì •ëœ ì œëª©");
+			vo.setContent("ìˆ˜ì •ëœ ë³¸ë¬¸");
+			vo.setWriter("ìˆ˜ì •ëœ ê¸€ì“´ì´");
 			service.update(vo);
 		}
 		
-		// detail Å×½ºÆ® ÄÚµå
+		// detail í…ŒìŠ¤íŠ¸ ì½”ë“œ
 		@Test
 		public void getDetailTest() {
 			long num = 42L;
