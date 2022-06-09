@@ -19,13 +19,13 @@ public class TimeMapperTests {
 	
 	//@Test
 	public void testGetTime() {
-		log.info("ÇöÀç ½Ã°£ Á¶È¸Áß...");
+		log.info("í˜„ìž¬ ì‹œê°„ ì¡°íšŒì¤‘...");
 	    log.info(timeMapper.getTime());
 	}
 	
 	@Test
 	public void testGetTime2() {
-		log.info("getTime2 Á¶È¸Áß");
+		log.info("getTime2 ì¡°íšŒì¤‘");
 		log.info(timeMapper.getTime2());
 	}
 

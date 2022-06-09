@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.ict.mapper.BoardMapper;
 import com.ict.persistence.BoardVO;
+import com.ict.persistence.Criteria;
 
 import lombok.extern.log4j.Log4j;
 
@@ -17,8 +18,8 @@ public class BoardServiceImpl implements BoardService{
 	private BoardMapper mapper;
 
 	@Override
-	public List<BoardVO> getList() {
-		return mapper.getList();
+	public List<BoardVO> getList(Criteria cri) {
+		return mapper.getList(cri);
 	}
 
 	@Override

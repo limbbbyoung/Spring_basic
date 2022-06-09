@@ -3,6 +3,7 @@ package com.ict.service;
 import java.util.List;
 
 import com.ict.persistence.BoardVO;
+import com.ict.persistence.Criteria;
 
 public interface BoardService {
 
@@ -14,7 +15,7 @@ public interface BoardService {
 	// 사용자 기준의 하나의 동작과 로직개념적 하나의 동작이 일치하지 않을수도 있으니 주의해야합니다.
 	
 	// getList
-	public List<BoardVO> getList();
+	public List<BoardVO> getList(Criteria cri);
 	
 	// insert
 	public void insert(BoardVO vo);

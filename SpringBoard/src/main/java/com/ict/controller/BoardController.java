@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ict.persistence.BoardVO;
+import com.ict.persistence.Criteria;
 import com.ict.service.BoardService;
 
 import lombok.extern.log4j.Log4j;
@@ -32,9 +33,11 @@ public class BoardController {
 	// /board/list 주소로 게시물 전체의 목록을 표현하는 컨트롤러를 만들어주세요.
 	@RequestMapping(value="/list",
 			method= {RequestMethod.GET, RequestMethod.POST})
-	public String getList(Model model) {
+							// @RequestParam의 defaultValue를 통해 값이 안들어올때
+							// 자동으로 배정할 값을 정할 수 있음
+	public String getList(Criteria cri, Model model) {
 		System.out.println("getList 실행");
-		List<BoardVO> boardList = service.getList();
+		List<BoardVO> boardList = service.getList(cri);
 		log.info(boardList);
 		model.addAttribute("boardList", boardList );
 		return "/board/list";

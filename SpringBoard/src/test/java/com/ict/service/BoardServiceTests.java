@@ -25,7 +25,7 @@ public class BoardServiceTests {
 		
 		//@Test
 		public void getListTest() {
-			log.info(service.getList());
+			//log.info(service.getList(6L));
 		}
 		
 		// insert도 테스트 한 번 해주세요.
@@ -56,7 +56,7 @@ public class BoardServiceTests {
 		}
 		
 		// detail 테스트 코드
-		@Test
+		//@Test
 		public void getDetailTest() {
 			long num = 42L;
 			service.getDetail(num);
