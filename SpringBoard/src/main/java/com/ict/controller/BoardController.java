@@ -2,8 +2,6 @@ package com.ict.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,12 +12,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ict.persistence.BoardVO;
-import com.ict.persistence.Criteria;
 import com.ict.persistence.PageMaker;
+import com.ict.persistence.SearchCriteria;
 import com.ict.service.BoardService;
 
 import lombok.extern.log4j.Log4j;
-import oracle.jdbc.proxy.annotation.Post;
 
 @Controller
 // 주소 /board
@@ -36,8 +33,11 @@ public class BoardController {
 			method= {RequestMethod.GET, RequestMethod.POST})
 							// @RequestParam의 defaultValue를 통해 값이 안들어올때
 							// 자동으로 배정할 값을 정할 수 있음
-	public String getList(Criteria cri, Model model) {
-		
+	public String getList(SearchCriteria cri, Model model) {
+		// page 파라미터값이 주어지지 않을때 default 1
+		if(cri.getPage() == 0) {
+			cri.setPage(1);
+		}
 		List<BoardVO> boardList = service.getList(cri);
 		model.addAttribute("boardList", boardList );
 		// PageMaker 생성 

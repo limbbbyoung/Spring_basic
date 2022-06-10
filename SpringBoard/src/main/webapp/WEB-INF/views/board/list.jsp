@@ -1,74 +1,126 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>boardList</title>
 </head>
 <body>
 	<div class="container">
-		<h1 style="color: Green;">±Û ¸ñ·Ï</h1>
-		<table class="table table-success">
-			<thead>
-				<tr>
-					<th>±Û¹øÈ£</th>
-					<th>±ÛÁ¦¸ñ</th>
-					<th>±Û¾´ÀÌ</th>
-					<th>±Û³»¿ë</th>
-					<th>¾´ ³¯Â¥</th>
-					<th>¼öÁ¤ ³¯Â¥</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<c:forEach var="board" items="${boardList }">
-						<tr>
-						<td>${board.bno }</td>
-						<td><a href="/board/detail?bno=${board.bno}">${board.title }</a></td>
-						<td>${board.writer }</td>
-						<td>${board.content }</td>
-						<td>${board.regdate }</td>
-						<td>${board.updatedate }</td>
-						</tr>						
-					</c:forEach>
-				</tr>
-			</tbody>
-		</table>
-		<a class="btn btn-primary" href="/board/insert">±Û ¾²±â</a>
-		<hr/>
-		<ul class="pagination">
-			<!-- Prev -->
-			<c:if test="${pageMaker.prev }">
-				<li class="page-item">
-					<a class="page-link" href="/board/list?page=${pageMaker.startPage - 1 }" aria-lable="Prev">
-						<span aria-hidden="true">&laquo;</span>
-					</a>
-				</li>
-			</c:if>
-			<c:forEach begin="${pageMaker.startPage }"
-					end="${pageMaker.endPage }"
-					var="pNum">
-				<li class="page-item 
-					<c:out value="${pageMaker.cri.page == pNum ? 'active' : '' }"/>">
-					<a class="page-link"
-						href="/board/list?page=${pNum }">
-						${pNum }
-					</a>
-				</li>	
-			</c:forEach>
-			<!-- Next -->
-			<c:if test="${pageMaker.next && pageMaker.endPage > 0 }">
-				<li class="page-item">
-					<a class="page-link"
-						href="/board/list?page=${pageMaker.endPage + 1}">
-						&raquo;	
-					</a>
-				</li>
-			</c:if>
-		</ul>
-	</div>
+		<div class="row">
+			<h1 style="color: Green;">ê¸€ ëª©ë¡</h1>
+			<table class="table table-success">
+				<thead>
+					<tr>
+						<th>ê¸€ë²ˆí˜¸</th>
+						<th>ê¸€ì œëª©</th>
+						<th>ê¸€ì“´ì´</th>
+						<th>ê¸€ë‚´ìš©</th>
+						<th>ì“´ ë‚ ì§œ</th>
+						<th>ìˆ˜ì • ë‚ ì§œ</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<c:forEach var="board" items="${boardList }">
+							<tr>
+							<td>${board.bno }</td>
+							<td><a href="/board/detail?bno=${board.bno}">${board.title }</a></td>
+							<td>${board.writer }</td>
+							<td>${board.content }</td>
+							<td>${board.regdate }</td>
+							<td>${board.updatedate }</td>
+							</tr>						
+						</c:forEach>
+					</tr>
+				</tbody>
+			</table>
+			<a class="btn btn-primary" href="/board/insert">ê¸€ ì“°ê¸°</a>
+			<hr/>
+			<ul class="pagination">
+				<!-- Prev -->
+				<c:if test="${pageMaker.prev }">
+					<li class="page-item">
+						<a class="page-link" href="/board/list?page=${pageMaker.startPage - 1 }" aria-lable="Prev">
+							<span aria-hidden="true">&laquo;</span>
+						</a>
+					</li>
+				</c:if>
+				<c:forEach begin="${pageMaker.startPage }"
+						end="${pageMaker.endPage }"
+						var="pNum">
+					<li class="page-item 
+						<c:out value="${pageMaker.cri.page == pNum ? 'active' : '' }"/>">
+						<a class="page-link"
+							href="/board/list?page=${pNum }&seachType=${cri.searchType }&keyword=${cri.keyword}">
+							${pNum }
+						</a>
+					</li>	
+				</c:forEach>
+				<!-- Next -->
+				<c:if test="${pageMaker.next && pageMaker.endPage > 0 }">
+					<li class="page-item">
+						<a class="page-link"
+							href="/board/list?page=${pageMaker.endPage + 1}">
+							&raquo;	
+						</a>
+					</li>
+				</c:if>
+			</ul>
+		</div><!-- .row ëë‚˜ëŠ” ì§€ì  -->
+		<div class="row">
+			<div class="box-body">
+				<select name="searchType" class="selectpicker">
+					<option value="n"
+					<c:out value="${cri.searchType == null ? 'selected' : '' }"/>>
+						-
+					</option>
+					<option value="t"
+					<c:out value="${cri.searchType == null ? 'selected' : '' }"/>>
+						ì œëª©
+					</option>
+					<option value="c"
+					<c:out value="${cri.searchType == null ? 'selected' : '' }"/>>
+						ë³¸ë¬¸ë‚´ìš©
+					</option>
+					<option value="w"
+					<c:out value="${cri.searchType == null ? 'selected' : '' }"/>>
+						ê¸€ì“´ì´
+					</option>
+					<option value="tc"
+					<c:out value="${cri.searchType == null ? 'selected' : '' }"/>>
+						ì œëª©+ë³¸ë¬¸ë‚´ìš©
+					</option>
+					<option value="cw"
+					<c:out value="${cri.searchType == null ? 'selected' : '' }"/>>
+						ê¸€ì“´ì´+ë³¸ë¬¸ë‚´ìš©
+					</option>
+					<option value="tcw"
+					<c:out value="${cri.searchType == null ? 'selected' : '' }"/>>
+						ëª¨ë“ ë‚´ìš©
+					</option>
+				</select>
+				<input type="text" name="keyword" id="keywordInput" 
+					value="${cri.keyword }">
+				<button class="btn btn-success" id="searchBtn">Search</button>
+			</div><!-- .box-body  -->
+		</div><!-- .row  -->
+	</div><!-- .container  -->
+	
+	<script type="text/javascript">
+	    // ê²€ìƒ‰ë²„íŠ¼ ì‘ë™
+		$('#searchBtn').on("click", function(event){
+			
+			self.location = "list"
+				+ "?page=1"
+				+ "&searchType="
+				+ $('select option:selected').val()
+				+ "&keyword=" + $('#keywordInput').val();
+		});
+	</script>
 </body>
 </html>
