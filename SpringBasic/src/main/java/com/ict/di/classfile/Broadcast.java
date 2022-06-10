@@ -7,17 +7,17 @@ import org.springframework.stereotype.Component;
 public class Broadcast {
 	
 	//@Autowired
-	private Stage stage; // ¹«´ë¿¡ ¼­´Â °¡¼ö
+	private Stage stage; // ë¬´ëŒ€ì— ì„œëŠ” ê°€ìˆ˜
 
-		// Stage¸¦ ÀÔ·Â¹Ş¾Æ¾ß¸¸ »ı¼º °¡´ÉÇÕ´Ï´Ù.
+		// Stageë¥¼ ì…ë ¥ë°›ì•„ì•¼ë§Œ ìƒì„± ê°€ëŠ¥í•©ë‹ˆë‹¤.
 		public Broadcast(Stage stage) {
-		    this.stage = stage; // ¹«´ë¿¡ ¼³ °¡¼ö¸¦ ÀÔ·ÂÇØ¾ß »ı¼ºÀÚ ½ÇÇàÀÌ °¡´ÉÇÏ°Ô Ã³¸®
+		    this.stage = stage; // ë¬´ëŒ€ì— ì„¤ ê°€ìˆ˜ë¥¼ ì…ë ¥í•´ì•¼ ìƒì„±ì ì‹¤í–‰ì´ ê°€ëŠ¥í•˜ê²Œ ì²˜ë¦¬
 		}
-		// ¹æ¼Û¿ë ±îÁö¸¸ ÀÚÃ¼ÀûÀ¸·Î ´ã´ç
-		// ÀÌÈÄ stageÀÇ perform¸Ş¼­µå°¡ ´ã´ç
+		// ë°©ì†¡ìš© ê¹Œì§€ë§Œ ìì²´ì ìœ¼ë¡œ ë‹´ë‹¹
+		// ì´í›„ stageì˜ performë©”ì„œë“œê°€ ë‹´ë‹¹
 		
 		public void broad() {
-			System.out.print("¹æ¼Û¿ë ");
+			System.out.print("ë°©ì†¡ìš© ");
 			this.stage.perform();
 		}
 

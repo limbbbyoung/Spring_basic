@@ -38,6 +38,37 @@
 			</tbody>
 		</table>
 		<a class="btn btn-primary" href="/board/insert">±Û ¾²±â</a>
+		<hr/>
+		<ul class="pagination">
+			<!-- Prev -->
+			<c:if test="${pageMaker.prev }">
+				<li class="page-item">
+					<a class="page-link" href="/board/list?page=${pageMaker.startPage - 1 }" aria-lable="Prev">
+						<span aria-hidden="true">&laquo;</span>
+					</a>
+				</li>
+			</c:if>
+			<c:forEach begin="${pageMaker.startPage }"
+					end="${pageMaker.endPage }"
+					var="pNum">
+				<li class="page-item 
+					<c:out value="${pageMaker.cri.page == pNum ? 'active' : '' }"/>">
+					<a class="page-link"
+						href="/board/list?page=${pNum }">
+						${pNum }
+					</a>
+				</li>	
+			</c:forEach>
+			<!-- Next -->
+			<c:if test="${pageMaker.next && pageMaker.endPage > 0 }">
+				<li class="page-item">
+					<a class="page-link"
+						href="/board/list?page=${pageMaker.endPage + 1}">
+						&raquo;	
+					</a>
+				</li>
+			</c:if>
+		</ul>
 	</div>
 </body>
 </html>

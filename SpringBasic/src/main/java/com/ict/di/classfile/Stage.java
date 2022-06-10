@@ -8,19 +8,19 @@ import org.springframework.stereotype.Component;
 @Component
 public class Stage {
 	
-	// ºó ÄÁÅ×ÀÌ³Ê ³»ºÎ¿¡¼­ ÀÚµ¿À¸·Î Stage ³»ºÎ¿¡ Singer¸¦ ´ëÀÔÇØÁÜ.
+	// ë¹ˆ ì»¨í…Œì´ë„ˆ ë‚´ë¶€ì—ì„œ ìë™ìœ¼ë¡œ Stage ë‚´ë¶€ì— Singerë¥¼ ëŒ€ì…í•´ì¤Œ.
 	//@Autowired
 	//@Qualifier("rapper")
-	private Singer singer; // ¹«´ë¿¡ ¼­´Â °¡¼ö
+	private Singer singer; // ë¬´ëŒ€ì— ì„œëŠ” ê°€ìˆ˜
 	
-	//Qualifier¸¦ ¾µ°Å¶ó¸é ¾Æ¹«°Íµµ ÀÔ·Â¹ŞÁö ¾Ê°í ¾Æ¹« ½ÇÇàµµ ÇÏÁö ¾Ê´Â »ı¼ºÀÚ¸¦ Ãß°¡ÇØ¾ß ÇÕ´Ï´Ù.
+	//Qualifierë¥¼ ì“¸ê±°ë¼ë©´ ì•„ë¬´ê²ƒë„ ì…ë ¥ë°›ì§€ ì•Šê³  ì•„ë¬´ ì‹¤í–‰ë„ í•˜ì§€ ì•ŠëŠ” ìƒì„±ìë¥¼ ì¶”ê°€í•´ì•¼ í•©ë‹ˆë‹¤.
 	public Stage() {
 		
 	}
 	
-	// ¹«´ë´Â °¡¼ö°¡ ÀÖ¾î¾ß ¼º¸³ÇÕ´Ï´Ù.
+	// ë¬´ëŒ€ëŠ” ê°€ìˆ˜ê°€ ìˆì–´ì•¼ ì„±ë¦½í•©ë‹ˆë‹¤.
 	// public Stage(Singer singer) {
-	//     this.singer = singer; // ¹«´ë¿¡ ¼³ °¡¼ö¸¦ ÀÔ·ÂÇØ¾ß »ı¼ºÀÚ ½ÇÇàÀÌ °¡´ÉÇÏ°Ô Ã³¸®
+	//     this.singer = singer; // ë¬´ëŒ€ì— ì„¤ ê°€ìˆ˜ë¥¼ ì…ë ¥í•´ì•¼ ìƒì„±ì ì‹¤í–‰ì´ ê°€ëŠ¥í•˜ê²Œ ì²˜ë¦¬
 	// }
 
 	public void setSinger(Singer singer) {
@@ -28,7 +28,7 @@ public class Stage {
 	}
 	
 	public void perform() {
-		System.out.print("¹«´ë¿¡¼­ ");
+		System.out.print("ë¬´ëŒ€ì—ì„œ ");
 		this.singer.sing();
 	}
 }

@@ -1,6 +1,7 @@
 package com.ict.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,15 +16,15 @@ public class SpringController {
 		System.out.println("기본 URL 주소입니다.");
 	}
 	
-	@RequestMapping(value="/base",
+	@RequestMapping(value="base",
 			method= {RequestMethod.GET, RequestMethod.POST})
-	public void baseGet() {
-		System.out.println("base get");
+	public void base() {
+		System.out.println("base");
 	}
 	
-	@PostMapping("/basePost")
-	public void baseOnlyPost() {
-		System.out.println("base only post");
+	@GetMapping("baseGet")
+	public void baseOnlyGet() {
+		System.out.println("base only get");
 	}
 	
 }

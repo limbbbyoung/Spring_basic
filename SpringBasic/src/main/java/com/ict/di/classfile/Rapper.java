@@ -7,7 +7,7 @@ public class Rapper extends Singer{
 	
 	@Override
 	public void sing() {
-		System.out.println("·¡ÆÛ°¡ ¹«´ë¿¡¼­ ·¦À» ÇÕ´Ï´Ù.");
+		System.out.println("ë˜í¼ê°€ ë¬´ëŒ€ì—ì„œ ë©ì„ í•©ë‹ˆë‹¤.");
 	}
 
 }

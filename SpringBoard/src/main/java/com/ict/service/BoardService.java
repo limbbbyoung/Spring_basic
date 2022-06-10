@@ -28,5 +28,8 @@ public interface BoardService {
 	
 	// detail
 	public BoardVO getDetail(long bno);
+	
+	// 전체 글 갯수 가져오기
+	public Long getBoardCount();
 
 }

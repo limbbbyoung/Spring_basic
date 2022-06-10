@@ -41,6 +41,13 @@ public class BoardServiceImpl implements BoardService{
 	public BoardVO getDetail(long bno) {
 		return mapper.getDetail(bno);
 	}
+
+	@Override
+	public Long getBoardCount() {
+		Long boardCount = mapper.getBoardCount();
+		System.out.println(boardCount);
+		return boardCount;
+	}
 	
 	
 }

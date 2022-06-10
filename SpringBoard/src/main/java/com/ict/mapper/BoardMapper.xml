@@ -5,6 +5,7 @@
 <!-- 위의 스키마 작성 후, 어떤 인터페이스의 메서드를 쿼리문과 
 연결해 줄지 아래와 같이 인터페이스 파일부터 mapper태그로 연결합니다. -->
 <mapper namespace="com.ict.mapper.BoardMapper">
+	<!-- 글 목록 -->
 	<select id="getList" resultType="com.ict.persistence.BoardVO">
 	<!-- <이나 >과 같이 태그로 오인될 수 있는 문자를 포함하는 
 	쿼리문은 그냥 작성하지 않고, CDATA를 이용합니다.
@@ -22,23 +23,34 @@
 	<!-- 현재 insert는 BoardVO를 파라미터로 받고 있습니다.
 	이 경우, VO 내부 변수를 #{변수명}으로 쿼리문에 전달할 수 있습니다.
 	${변수명}이 아님을 주의해주세요. -->
+	
+	<!-- 글쓰기 -->
 	<insert id="insert">
 		INSERT INTO board_tbl(bno, title, content, writer) VALUES
 			(board_num.nextval, #{title}, #{content}, #{writer})
 	</insert>
 	
+	<!-- 글 삭제하기 -->
 	<delete id="delete">
 		DELETE FROM board_tbl WHERE bno=#{bno}
 	</delete>
 	
+	<!-- 글 수정하기 -->
 	<update id="update">
 		UPDATE board_tbl SET title=#{title}, content=#{content}, writer=#{writer},
 			updatedate=SYSDATE WHERE bno=#{bno}
 	</update>
 	
+	<!-- 글 상세 정보 -->
 	<select id="getDetail" resultType="com.ict.persistence.BoardVO">
-	<![CDATA[
-		SELECT * FROM board_tbl WHERE bno=#{bno}
-	]]>
+		<![CDATA[
+			SELECT * FROM board_tbl WHERE bno=#{bno}
+		]]>
 	</select>
+	
+	<!-- 전체 글 갯수 구하기 -->
+	<select id="getBoardCount" resultType="long">
+			SELECT count(*) FROM board_tbl
+	</select>
+	
 </mapper>

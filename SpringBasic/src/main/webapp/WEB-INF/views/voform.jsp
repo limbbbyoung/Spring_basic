@@ -1,18 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 	 <form action="http://localhost:8181/getVO" method="get">
-      	<input type="text" name="name" placeholder="ÀÌ¸§" required/><br/>
-    	<input type="number" name="age" placeholder="³ªÀÌ" required/><br/>
-     	<input type="number" name="level" placeholder="·¹º§" required/><br/>
-     	<input type="text" name="skill" placeholder="´É·Â" required/><br/>
-     	<input type="submit" value="ÀÔ·Â Á¤º¸ È®ÀÎ"/>
+      	<input type="text" name="name" placeholder="ì´ë¦„" required/><br/>
+    	<input type="number" name="age" placeholder="ë‚˜ì´" required/><br/>
+     	<input type="number" name="level" placeholder="ë ˆë²¨" required/><br/>
+     	<input type="text" name="skill" placeholder="ëŠ¥ë ¥" required/><br/>
+     	<input type="submit" value="ì…ë ¥ ì •ë³´ í™•ì¸"/>
      </form>
 </body>
 </html>

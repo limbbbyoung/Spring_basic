@@ -7,7 +7,7 @@ public class BalladSinger extends Singer{
 	
 	@Override
 	public void sing() {
-		System.out.println("¹ß¶óµå°¡¼ö°¡ ¹«´ë¿¡¼­ ³ë·¡¸¦ ÇÕ´Ï´Ù.");
+		System.out.println("ë°œë¼ë“œê°€ìˆ˜ê°€ ë¬´ëŒ€ì—ì„œ ë…¸ë˜ë¥¼ í•©ë‹ˆë‹¤.");
 	}
 
 }

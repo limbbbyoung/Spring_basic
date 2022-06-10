@@ -8,14 +8,14 @@ public class Satellite {
 	
 	private Broadcast broadcast;
 
-		// Stage¸¦ ÀÔ·Â¹Ş¾Æ¾ß¸¸ »ı¼º °¡´ÉÇÕ´Ï´Ù.
+		// Stageë¥¼ ì…ë ¥ë°›ì•„ì•¼ë§Œ ìƒì„± ê°€ëŠ¥í•©ë‹ˆë‹¤.
 		public Satellite(Broadcast broadcast) {
 		    this.broadcast = broadcast; 
 		}
 		
-		// À§¼º ¹æ¼Û
+		// ìœ„ì„± ë°©ì†¡
 		public void satelliteBroad() {
-			System.out.print("À§¼º ");
+			System.out.print("ìœ„ì„± ");
 			this.broadcast.broad();
 		}
 

@@ -2,17 +2,17 @@ package com.ict.domain;
 
 import lombok.Data;
 
-// lombokÀ» ÀÌ¿ëÇÏ¸é ÀÚµ¿À¸·Î getter, setter, toStringÀ» ¸¸µé ¼ö ÀÖ½À´Ï´Ù.
-// ¾Æ·¡¿Í °°ÀÌ @Data¸¦ Å¬·¡½º¸í À§¿¡ ºÙÀÌ¸é ÀÚµ¿»ı¼ºµÇ°í
-// ÁÂÃø package explorer¿¡¼­ »ı¼º¿©ºÎ¸¦ È®ÀÎ °¡´ÉÇÕ´Ï´Ù.
+// lombokì„ ì´ìš©í•˜ë©´ ìë™ìœ¼ë¡œ getter, setter, toStringì„ ë§Œë“¤ ìˆ˜ ìˆìŠµë‹ˆë‹¤.
+// ì•„ë˜ì™€ ê°™ì´ @Dataë¥¼ í´ë˜ìŠ¤ëª… ìœ„ì— ë¶™ì´ë©´ ìë™ìƒì„±ë˜ê³ 
+// ì¢Œì¸¡ package explorerì—ì„œ ìƒì„±ì—¬ë¶€ë¥¼ í™•ì¸ ê°€ëŠ¥í•©ë‹ˆë‹¤.
 @Data
 public class TestVO {
 	
 	private String name;
 	private int age;
 	private int level;
-	// ¿©·¯ºĞµéÀÌ TestVO¿¡ ¸â¹öº¯¼ö¸¦
-	// ÇÏ³ª ´õ Ãß°¡ÇØ¼­ Á÷Á¢ ¹Ş¾Æº¸¼¼¿ä.
+	// ì—¬ëŸ¬ë¶„ë“¤ì´ TestVOì— ë©¤ë²„ë³€ìˆ˜ë¥¼
+	// í•˜ë‚˜ ë” ì¶”ê°€í•´ì„œ ì§ì ‘ ë°›ì•„ë³´ì„¸ìš”.
 	private String skill;
 	
 

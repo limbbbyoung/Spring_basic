@@ -1,14 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-		<h1>Å°´Â ${cm },</h1>
-		<h1>¸ö¹«°Ô´Â ${kg }ÀÎ »ç¶÷ÀÇ </h1>
-		<h1>BMIÁö¼ö´Â ${BMI }ÀÔ´Ï´Ù.</h1>
+		<h1>í‚¤ëŠ” ${cm },</h1>
+		<h1>ëª¸ë¬´ê²ŒëŠ” ${kg }ì¸ ì‚¬ëžŒì˜ </h1>
+		<h1>BMIì§€ìˆ˜ëŠ” ${BMI }ìž…ë‹ˆë‹¤.</h1>
 </body>
 </html>

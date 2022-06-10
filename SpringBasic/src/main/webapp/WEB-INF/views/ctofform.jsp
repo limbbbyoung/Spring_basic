@@ -1,15 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 	 <form action="/ctof" method="post">
-     	<input type="number" name="C" placeholder="¼·¾¾¿Âµµ" required/>
-     	<input type="submit" value="È­¾¾¿Âµµº¸±â"/>
+     	<input type="number" name="C" placeholder="ì„­ì”¨ì˜¨ë„" required/>
+     	<input type="submit" value="í™”ì”¨ì˜¨ë„ë³´ê¸°"/>
      </form>
 </body>
 </html>

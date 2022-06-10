@@ -1,16 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
      <form action="http://localhost:8181/bmi" method="post">
-    	<input type="number" name="height" placeholder="Å°(cm)" required/>
-     	<input type="number" name="kg" placeholder="¸ö¹«°Ô(kg)" required/>
-     	<input type="submit" value="BMI Áö¼ö È®ÀÎ"/>
+    	<input type="number" name="height" placeholder="í‚¤(cm)" required/>
+     	<input type="number" name="kg" placeholder="ëª¸ë¬´ê²Œ(kg)" required/>
+     	<input type="submit" value="BMI ì§€ìˆ˜ í™•ì¸"/>
      </form>
 </body>
 </html>

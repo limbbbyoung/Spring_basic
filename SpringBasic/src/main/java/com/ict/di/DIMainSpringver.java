@@ -10,21 +10,21 @@ import com.ict.di.classfile.Stage;
 public class DIMainSpringver {
 
 	public static void main(String[] args) {
-		// root-context°¡ ¿©·¯°³¶ó¸é ¹Ì¸® ¹®ÀÚ ¹è¿­·Î °æ·Î¸¦ ¸¸µé¾îµÎ±â
+		// root-contextê°€ ì—¬ëŸ¬ê°œë¼ë©´ ë¯¸ë¦¬ ë¬¸ì ë°°ì—´ë¡œ ê²½ë¡œë¥¼ ë§Œë“¤ì–´ë‘ê¸°
 		String[] path = {"file:src/main/webapp/WEB-INF/spring/root-context.xml",
 				"file:src/main/webapp/WEB-INF/spring/root-context2.xml"};
 		
 		
-		// ºó ÄÁÅ×ÀÌ³Ê¿¡ µé¾îÀÖ´Â °´Ã¼¸¦ ²¨³»±â À§ÇØ È£Ãâ±â »ı¼º
-		// ¸ñÇ¥ ºó ÄÁÅ×ÀÌ³Ê(root-context.xml)ÀÇ °æ·Î¸¦ Àû¾îÁà¼­ ±×ÂÊ ºóÄÁÅ×ÀÌ³Ê¿Í Åë½ÅÇÏµµ·Ï ¼³Á¤
+		// ë¹ˆ ì»¨í…Œì´ë„ˆì— ë“¤ì–´ìˆëŠ” ê°ì²´ë¥¼ êº¼ë‚´ê¸° ìœ„í•´ í˜¸ì¶œê¸° ìƒì„±
+		// ëª©í‘œ ë¹ˆ ì»¨í…Œì´ë„ˆ(root-context.xml)ì˜ ê²½ë¡œë¥¼ ì ì–´ì¤˜ì„œ ê·¸ìª½ ë¹ˆì»¨í…Œì´ë„ˆì™€ í†µì‹ í•˜ë„ë¡ ì„¤ì •
 		GenericXmlApplicationContext context = 
 				new GenericXmlApplicationContext(path);
 		
 		/*GenericXmlApplicationContext context = 
 				new GenericXmlApplicationContext(file:src/main/webapp/WEB-INF/spring/root-*.xml); 
-			*À» Áı¾î³ÖÀ¸¸é root-µÚ¿¡ ºÙ´Â ¾î¶² °ÍÀÌµç Ã³¸®ÇØÁÖ´Â ÄÚµå */
+			*ì„ ì§‘ì–´ë„£ìœ¼ë©´ root-ë’¤ì— ë¶™ëŠ” ì–´ë–¤ ê²ƒì´ë“  ì²˜ë¦¬í•´ì£¼ëŠ” ì½”ë“œ */
 
-		// Singer¾øÀÌ ¹Ù·Î ´ÙÀÌ·ºÆ®·Î Stage¸¦ ¸¸µé¾îº¸°Ú½À´Ï´Ù.
+		// Singerì—†ì´ ë°”ë¡œ ë‹¤ì´ë ‰íŠ¸ë¡œ Stageë¥¼ ë§Œë“¤ì–´ë³´ê² ìŠµë‹ˆë‹¤.
 		/*
 		Stage stage = context.getBean("stage", Stage.class);
 		stage.perform();

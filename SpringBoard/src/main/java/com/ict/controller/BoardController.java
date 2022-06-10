@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ict.persistence.BoardVO;
 import com.ict.persistence.Criteria;
+import com.ict.persistence.PageMaker;
 import com.ict.service.BoardService;
 
 import lombok.extern.log4j.Log4j;
@@ -36,10 +37,15 @@ public class BoardController {
 							// @RequestParam의 defaultValue를 통해 값이 안들어올때
 							// 자동으로 배정할 값을 정할 수 있음
 	public String getList(Criteria cri, Model model) {
-		System.out.println("getList 실행");
+		
 		List<BoardVO> boardList = service.getList(cri);
-		log.info(boardList);
 		model.addAttribute("boardList", boardList );
+		// PageMaker 생성 
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalBoard(service.getBoardCount());
+		log.info(pageMaker);
+		model.addAttribute("pageMaker", pageMaker);
 		return "/board/list";
 	}
 	
