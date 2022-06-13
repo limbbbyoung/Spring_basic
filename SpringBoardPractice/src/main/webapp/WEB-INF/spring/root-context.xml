@@ -8,7 +8,6 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	<!-- Spring에 의하여 생성되고 관리되는 자바 객체를 Bean -->
 	<!-- Root Context: defines shared resources visible to all other web components -->
-	<!-- Root Context: defines shared resources visible to all other web components -->
     <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
     	<property name="driverClassName"
     		value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
