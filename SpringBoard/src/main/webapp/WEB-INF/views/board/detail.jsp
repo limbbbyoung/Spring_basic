@@ -15,13 +15,20 @@
  	글쓴이 : ${board.writer } <br/>
  	글내용 : <textarea rows="20" cols="50">${board.content }</textarea>
  	<form action="/board/delete" method="post">
- 	<input type="hidden" value="${board.bno }" name="bno">
- 	<button type="submit">글 삭제하기</button>
+	 	<input type="hidden" value="${board.bno }" name="bno">
+	 	<input type="hidden" name="page" value="${param.page }">
+		<input type="hidden" name="searchType" value="${param.searchType}">
+		<input type="hidden" name="keyword" value="${param.keyword}">
+	 	<button type="submit">글 삭제하기</button>
  	</form>
+ 	
  	<form action="/board/updateForm" method="post">
- 	<input type="hidden" value="${board.bno }" name="bno">
- 	<button type="submit">글 수정하기</button>
+	 	<input type="hidden" value="${board.bno }" name="bno">
+	 	<input type="hidden" name="page" value="${param.page }">
+	    <input type="hidden" name="searchType" value="${param.searchType}">
+	    <input type="hidden" name="keyword" value="${param.keyword}">
+	 	<button type="submit">글 수정하기</button>
  	</form>
- 	<a class="btn btn-primary" href="/board/list">글 목록</a>
+ 	<a class="btn btn-primary" href="/board/list?page=${param.page }&searchType=${param.searchType }&keyword=${param.keyword}">글 목록</a>
 </body>
 </html>

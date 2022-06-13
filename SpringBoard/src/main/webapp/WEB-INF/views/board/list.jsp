@@ -29,7 +29,8 @@
 						<c:forEach var="board" items="${boardList }">
 							<tr>
 							<td>${board.bno }</td>
-							<td><a href="/board/detail?bno=${board.bno}">${board.title }</a></td>
+							<td><a href="/board/detail?bno=${board.bno}&page=${pageMaker.cri.page}
+							      &searchType=${pageMaker.cri.searchType}&keyword=${pageMaker.cri.keyword}">${board.title }</a></td>
 							<td>${board.writer }</td>
 							<td>${board.content }</td>
 							<td>${board.regdate }</td>
@@ -45,7 +46,8 @@
 				<!-- Prev -->
 				<c:if test="${pageMaker.prev }">
 					<li class="page-item">
-						<a class="page-link" href="/board/list?page=${pageMaker.startPage - 1 }" aria-lable="Prev">
+						<a class="page-link" href="/board/list?page=${pageMaker.startPage - 1 }
+						&searchType=${pageMaker.cri.searchType }&keyword=${pageMaker.cri.keyword}" aria-lable="Prev">
 							<span aria-hidden="true">&laquo;</span>
 						</a>
 					</li>
@@ -56,7 +58,7 @@
 					<li class="page-item 
 						<c:out value="${pageMaker.cri.page == pNum ? 'active' : '' }"/>">
 						<a class="page-link"
-							href="/board/list?page=${pNum }&seachType=${cri.searchType }&keyword=${cri.keyword}">
+							href="/board/list?page=${pNum }&searchType=${pageMaker.cri.searchType }&keyword=${pageMaker.cri.keyword}">
 							${pNum }
 						</a>
 					</li>	
@@ -65,7 +67,7 @@
 				<c:if test="${pageMaker.next && pageMaker.endPage > 0 }">
 					<li class="page-item">
 						<a class="page-link"
-							href="/board/list?page=${pageMaker.endPage + 1}">
+							href="/board/list?page=${pageMaker.endPage + 1}&searchType=${pageMaker.cri.searchType }&keyword=${pageMaker.cri.keyword}">
 							&raquo;	
 						</a>
 					</li>
@@ -76,36 +78,36 @@
 			<div class="box-body">
 				<select name="searchType" class="selectpicker">
 					<option value="n"
-					<c:out value="${cri.searchType == null ? 'selected' : '' }"/>>
+					<c:out value="${pageMaker.cri.searchType == null ? 'selected' : '' }"/>>
 						-
 					</option>
 					<option value="t"
-					<c:out value="${cri.searchType == null ? 'selected' : '' }"/>>
+					<c:out value="${pageMaker.cri.searchType == null ? 'selected' : '' }"/>>
 						제목
 					</option>
 					<option value="c"
-					<c:out value="${cri.searchType == null ? 'selected' : '' }"/>>
+					<c:out value="${pageMaker.cri.searchType == null ? 'selected' : '' }"/>>
 						본문내용
 					</option>
 					<option value="w"
-					<c:out value="${cri.searchType == null ? 'selected' : '' }"/>>
+					<c:out value="${pageMaker.cri.searchType == null ? 'selected' : '' }"/>>
 						글쓴이
 					</option>
 					<option value="tc"
-					<c:out value="${cri.searchType == null ? 'selected' : '' }"/>>
+					<c:out value="${pageMaker.cri.searchType == null ? 'selected' : '' }"/>>
 						제목+본문내용
 					</option>
 					<option value="cw"
-					<c:out value="${cri.searchType == null ? 'selected' : '' }"/>>
+					<c:out value="${pageMaker.cri.searchType == null ? 'selected' : '' }"/>>
 						글쓴이+본문내용
 					</option>
 					<option value="tcw"
-					<c:out value="${cri.searchType == null ? 'selected' : '' }"/>>
+					<c:out value="${pageMaker.cri.searchType == null ? 'selected' : '' }"/>>
 						모든내용
 					</option>
 				</select>
 				<input type="text" name="keyword" id="keywordInput" 
-					value="${cri.keyword }">
+					value="${pageMaker.cri.keyword }">
 				<button class="btn btn-success" id="searchBtn">Search</button>
 			</div><!-- .box-body  -->
 		</div><!-- .row  -->
@@ -122,5 +124,6 @@
 				+ "&keyword=" + $('#keywordInput').val();
 		});
 	</script>
+	${pageMaker }
 </body>
 </html>

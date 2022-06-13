@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.ict.mapper.BoardMapper;
 import com.ict.persistence.BoardVO;
 import com.ict.persistence.Criteria;
+import com.ict.persistence.SearchCriteria;
 
 import lombok.extern.log4j.Log4j;
 
@@ -18,7 +19,7 @@ public class BoardServiceImpl implements BoardService{
 	private BoardMapper mapper;
 
 	@Override
-	public List<BoardVO> getList(Criteria cri) {
+	public List<BoardVO> getList(SearchCriteria cri) {
 		return mapper.getList(cri);
 	}
 
@@ -43,9 +44,8 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public Long getBoardCount() {
-		Long boardCount = mapper.getBoardCount();
-		System.out.println(boardCount);
+	public Long getBoardCount(SearchCriteria cri) {
+		Long boardCount = mapper.getBoardCount(cri);
 		return boardCount;
 	}
 	

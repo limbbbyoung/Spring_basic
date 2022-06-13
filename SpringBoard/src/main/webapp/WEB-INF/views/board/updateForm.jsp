@@ -16,11 +16,14 @@
 	${board }
 	<div class="container">	
 	 <form action="/board/update" method="post">
-     글제목 : <input class="form-control" type="text" name="title" value="${board.title }" required><br/>
-     작성자 : <input class="form-control" type="text" name= "writer" value="${board.writer}" required><br/>
-     <p>글내용 : </p> <textarea class="form-control" cols="50" rows="12" name="content" required>${board.content}</textarea><br/>
-     <input type="hidden" value="${board.bno }" name="bno">
-     <button type="submit" class="btn btn-success" >글 수정하기</button>
+	     글제목 : <input class="form-control" type="text" name="title" value="${board.title }" required><br/>
+	     작성자 : <input class="form-control" type="text" name= "writer" value="${board.writer}" required><br/>
+	     <p>글내용 : </p> <textarea class="form-control" cols="50" rows="12" name="content" required>${board.content}</textarea><br/>
+	     <input type="hidden" name="bno" value="${board.bno }">
+	     <input type="hidden" name="page" value="${param.page }">
+	     <input type="hidden" name="searchType" value="${param.searchType}">
+	     <input type="hidden" name="keyword" value="${param.keyword}">
+	     <button type="submit" class="btn btn-success" >글 수정하기</button>
      </form>
     </div>
 </body>

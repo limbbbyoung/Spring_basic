@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ict.persistence.BoardVO;
 import com.ict.persistence.PageMaker;
@@ -43,7 +44,8 @@ public class BoardController {
 		// PageMaker 생성 
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
-		pageMaker.setTotalBoard(service.getBoardCount());
+		pageMaker.setTotalBoard(service.getBoardCount(cri));
+		log.info(service.getBoardCount(cri));
 		log.info(pageMaker);
 		model.addAttribute("pageMaker", pageMaker);
 		return "/board/list";
@@ -85,27 +87,42 @@ public class BoardController {
 	
 	// 글삭제 post방식으로 처리하도록 합니다.
 	@PostMapping("/delete")
-	public String deleteBoard(Long bno) {
+	public String deleteBoard(Long bno, SearchCriteria cri, RedirectAttributes rttr) {
 		// 삭제 후 리스트로 돌아갈 수 있도록 내부 로직을 만들어주시고
 		// 디테일 페이지에 삭제 요청을 넣을 수 있는 폼을 만들어주세요.
 		service.delete(bno);
+		
+		rttr.addAttribute("page", cri.getPage());
+		rttr.addAttribute("searchType", cri.getSearchType());
+		rttr.addAttribute("keyword", cri.getKeyword());
 		return "redirect:/board/list";
 	}
 	
 	// 글 수정 로직
 	@PostMapping("/updateForm")
 	public String updateForm(Long bno, Model model) {
-		log.info(service.getDetail(bno));
 		BoardVO board = service.getDetail(bno);
 		model.addAttribute("board", board);
 		return "/board/updateForm";
 	}
 	
 	@PostMapping("/update")
-	public String udateBoard(BoardVO board) {
-		log.info(board);
+	public String udateBoard(BoardVO board, SearchCriteria cri, RedirectAttributes rttr) {
+		log.info("수정로직입니다." + board);
+		log.info("검색어 : " + cri.getKeyword());
+		log.info("검색조건 : " + cri.getSearchType());
+		log.info("페이지번호 : " + cri.getPage());
 		service.update(board);
-		return "redirect:/board/detail?bno="+board.getBno();
+		
+		// rttr.addAttribute("파라미터명", "전달자료")
+		// 는 호출되면 redirect 주소 뒤에 파라미터를 붙여줍니다.
+		// rttr.addFlashAttribute()는 넘어간 페이지에서 파라미터를
+		// 쓸 수 있도록 전달하는 것으로 둘의 역할이 다르니 주의해주세요.
+		rttr.addAttribute("bno", board.getBno());
+		rttr.addAttribute("page", cri.getPage());
+		rttr.addAttribute("searchType", cri.getSearchType());
+		rttr.addAttribute("keyword", cri.getKeyword());
+		return "redirect:/board/detail";
 	}
 }
 
