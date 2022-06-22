@@ -126,5 +126,10 @@
 		
 		
 	</script>
+	
+	<!-- delete.js 내부에 코드를 모두 작성한 다음에 link 태그를 활용해 파일을 첨부 -->
+	<script src="/resources/restTest/delete.js"></script>
+	<!-- 수정로직 파일 첨부 -->
+	<script src="/resources/restTest/modify.js"></script>
 </body>
 </html>
