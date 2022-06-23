@@ -1,6 +1,7 @@
 // 수정로직
 $("#replyModBtn").on("click", function(){
 		    var rno = $(".modal-title").html();
+		    console.log(rno);
 		    var replytext = $("#replyText").val();
 
 		    $.ajax({
