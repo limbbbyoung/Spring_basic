@@ -78,31 +78,31 @@
 			<div class="box-body">
 				<select name="searchType" class="selectpicker">
 					<option value="n"
-					<c:out value="${pageMaker.cri.searchType == null ? 'selected' : '' }"/>>
+					<c:out value="${pageMaker.cri.searchType == 'n' ? 'selected' : '' }"/>>
 						-
 					</option>
 					<option value="t"
-					<c:out value="${pageMaker.cri.searchType == null ? 'selected' : '' }"/>>
+					<c:out value="${pageMaker.cri.searchType == 't' ? 'selected' : '' }"/>>
 						제목
 					</option>
 					<option value="c"
-					<c:out value="${pageMaker.cri.searchType == null ? 'selected' : '' }"/>>
+					<c:out value="${pageMaker.cri.searchType == 'c' ? 'selected' : '' }"/>>
 						본문내용
 					</option>
 					<option value="w"
-					<c:out value="${pageMaker.cri.searchType == null ? 'selected' : '' }"/>>
+					<c:out value="${pageMaker.cri.searchType == 'w' ? 'selected' : '' }"/>>
 						글쓴이
 					</option>
 					<option value="tc"
-					<c:out value="${pageMaker.cri.searchType == null ? 'selected' : '' }"/>>
+					<c:out value="${pageMaker.cri.searchType == 'tc' ? 'selected' : '' }"/>>
 						제목+본문내용
 					</option>
 					<option value="cw"
-					<c:out value="${pageMaker.cri.searchType == null ? 'selected' : '' }"/>>
+					<c:out value="${pageMaker.cri.searchType == 'cw' ? 'selected' : '' }"/>>
 						글쓴이+본문내용
 					</option>
 					<option value="tcw"
-					<c:out value="${pageMaker.cri.searchType == null ? 'selected' : '' }"/>>
+					<c:out value="${pageMaker.cri.searchType == 'tcw' ? 'selected' : '' }"/>>
 						모든내용
 					</option>
 				</select>

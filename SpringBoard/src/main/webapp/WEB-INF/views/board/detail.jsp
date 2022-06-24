@@ -46,13 +46,13 @@
  	</div><!-- row -->
  		
  	<br/>
- 	
- 		<!-- Button trigger modal -->
+ 		<!-- 모달로 된 addReply -->
+ 		<!-- Button trigger modal 
 		<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
 		  ADD REPLY
-		</button>
+		</button>-->
 		
-		<!-- Modal -->
+		<!-- Modal 
 		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		  <div class="modal-dialog">
 		    <div class="modal-content">
@@ -61,21 +61,36 @@
 		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 		      </div>
 		      <div class="modal-body">
-		          <div>
-			   <div>
-			      REPLYER <input type="text" name="replyer" id="newReplyWriter">
-			   </div>
-			   <div>
-			      REPLY TEXT <input type="text" name="reply" id="newReplyText">
-			   </div>
-			</div>
-		           </div>
+		        <div>
+				   <div>
+				      REPLYER <input type="text" name="replyer" id="newReplyWriter">
+				   </div>
+				   <div>
+				      REPLY TEXT <input type="text" name="reply" id="newReplyText">
+				   </div>
+				</div>
+		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 		        <button type="button" id="replyAddBtn" class="btn btn-primary">ADD REPLY</button>
 		      </div>
 		    </div>
 		  </div>
+		</div>-->
+		<hr>
+		<div class="row box-box-success">
+			<div class="box-header">
+				<h2 class="text-primary">댓글 작성</h2>
+			</div><!-- header -->
+			<div class="box-body">
+				<strong>Writer</strong>
+				<input type="text" name="replyer" id="newReplyWriter" class="form-control">
+				<strong>ReplyText</strong>
+				<input type="text" name="reply" id="newReplyText" class="form-control">
+			</div><!-- body -->
+			<div class="box-footer">
+		        <button type="button" id="replyAddBtn" class="btn btn-primary">ADD REPLY</button>
+			</div><!-- footer -->
 		</div>
  	
  	
