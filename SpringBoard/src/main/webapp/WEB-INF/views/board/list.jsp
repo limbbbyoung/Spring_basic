@@ -30,7 +30,7 @@
 							<tr>
 							<td>${board.bno }</td>
 							<td><a href="/board/detail?bno=${board.bno}&page=${pageMaker.cri.page}
-							      &searchType=${pageMaker.cri.searchType}&keyword=${pageMaker.cri.keyword}">${board.title }</a></td>
+							      &searchType=${pageMaker.cri.searchType}&keyword=${pageMaker.cri.keyword}">${board.title }[${board.replycount }]</a></td>
 							<td>${board.writer }</td>
 							<td>${board.content }</td>
 							<td>${board.regdate }</td>

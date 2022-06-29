@@ -32,4 +32,9 @@
  			WHERE rno = #{rno}
  	</delete>
  	
+ 	<select id="getBno" resultType="long">
+ 		SELECT bno FROM reply_tbl
+ 			WHERE rno = #{rno}
+ 	</select>
+ 	
  </mapper>
