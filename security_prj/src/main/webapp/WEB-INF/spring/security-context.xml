@@ -7,7 +7,13 @@
 		http://www.springframework.org/schema/beans 
 		http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-		<security:http>
+<bean id="customAccessDenied" class="com.ict.security.CustomAccessDeniedHandler"/>
+<bean id="customLoginSuccess" class="com.ict.security.CustomLoginSuccessHandler"/>
+
+			<!-- security는 스프링 하위 프레임워크로써 내장되어 있는 기능들을 통해 쉽게 
+			보안처리가 가능한 user login 기능을 구현할 수가 있음. 현재 수업시간에 배우는 것들은 
+			로그인기능을 지원할시 일반적으로 필요하고 필수적인 기능들을 하나씩 구현해보고 있음. -->
+     		<security:http>
 		
 			<!-- /secu/all 접속시 모든 유저에게 접근 허용 -->
 			<security:intercept-url pattern="/secu/all" access="permitAll"/>
@@ -18,21 +24,26 @@
 			<!-- /secu/admin은 admin에게만 접근 허용 -->
 			<security:intercept-url pattern="/secu/admin" access="hasRole('ROLE_ADMIN')"/>
 			
-			<security:form-login/>
+			<security:form-login login-page="/customLogin" 
+					authentication-success-handler-ref="customLoginSuccess"/>
 			
-			<security:access-denied-handler error-page="/accessError"/>
+			<!-- <security:access-denied-handler error-page="/accessError"/> -->
+			<security:access-denied-handler ref="customAccessDenied"/><!-- ref는 참조를 뜻함 -->
+			
+			<security:logout logout-url="/customLogout" invalidate-session="true"/>
 			
 		</security:http>
 		
 		<security:authentication-manager>
 		
 			<security:authentication-provider>
-				<security:user-service>
+				<!-- DB 연동 전 test를 위한 user 생성 -->
+				<!-- <security:user-service>
 					<security:user name="member" password="{noop}member" authorities="ROLE_MEMBER"/> 
 					<security:user name="admin" password="{noop}admin" authorities="ROLE_ADMIN, ROLE_MEMBER"/> 
-				</security:user-service>
+				</security:user-service> -->
+				<security:jdbc-user-service data-source-ref="dataSource"/>
 			</security:authentication-provider>
-			
 		</security:authentication-manager>
 
 </beans>
