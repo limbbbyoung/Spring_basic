@@ -9,7 +9,8 @@
 
 <bean id="customAccessDenied" class="com.ict.security.CustomAccessDeniedHandler"/>
 <bean id="customLoginSuccess" class="com.ict.security.CustomLoginSuccessHandler"/>
-
+<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+<bean id="customUserDetailsService" class="com.ict.security.CustomUserDetailsService"/>
 			<!-- security는 스프링 하위 프레임워크로써 내장되어 있는 기능들을 통해 쉽게 
 			보안처리가 가능한 user login 기능을 구현할 수가 있음. 현재 수업시간에 배우는 것들은 
 			로그인기능을 지원할시 일반적으로 필요하고 필수적인 기능들을 하나씩 구현해보고 있음. -->
@@ -36,14 +37,23 @@
 		
 		<security:authentication-manager>
 		
-			<security:authentication-provider>
+			<!-- 커스텀마이징해서 쓰기 위한 DB설정 -->
+			<security:authentication-provider
+				user-service-ref="customUserDetailsService">
+				
 				<!-- DB 연동 전 test를 위한 user 생성 -->
 				<!-- <security:user-service>
 					<security:user name="member" password="{noop}member" authorities="ROLE_MEMBER"/> 
 					<security:user name="admin" password="{noop}admin" authorities="ROLE_ADMIN, ROLE_MEMBER"/> 
 				</security:user-service> -->
-				<security:jdbc-user-service data-source-ref="dataSource"/>
+				
+				<!-- spring-security에서 기본적으로 제공하는 DB를 사용하는 dataSource 관련 태그 -->
+				<!-- <security:jdbc-user-service data-source-ref="dataSource"/> -->
+				
+				<security:password-encoder ref="bcryptPasswordEncoder"/>
+				
 			</security:authentication-provider>
+			
 		</security:authentication-manager>
 
 </beans>
