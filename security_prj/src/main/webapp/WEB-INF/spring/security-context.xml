@@ -20,10 +20,10 @@
 			<security:intercept-url pattern="/secu/all" access="permitAll"/>
 			
 			<!-- /secu/member 접속시 Member에게만 접근 허용 -->
-			<security:intercept-url pattern="/secu/member" access="hasRole('ROLE_MEMBER')"/>
+			<!-- <security:intercept-url pattern="/secu/member" access="hasRole('ROLE_MEMBER')"/> -->
 			
 			<!-- /secu/admin은 admin에게만 접근 허용 -->
-			<security:intercept-url pattern="/secu/admin" access="hasRole('ROLE_ADMIN')"/>
+			<!-- <security:intercept-url pattern="/secu/admin" access="hasRole('ROLE_ADMIN')"/> -->
 			
 			<security:form-login login-page="/customLogin" 
 					authentication-success-handler-ref="customLoginSuccess"/>
@@ -31,7 +31,10 @@
 			<!-- <security:access-denied-handler error-page="/accessError"/> -->
 			<security:access-denied-handler ref="customAccessDenied"/><!-- ref는 참조를 뜻함 -->
 			
-			<security:logout logout-url="/customLogout" invalidate-session="true"/>
+			<security:logout logout-url="/customLogout" invalidate-session="true"
+				delete-cookies="remember-me,JSESSIONID"/>
+			
+			<security:remember-me data-source-ref="dataSource" token-validity-seconds="604800"/>
 			
 		</security:http>
 		
