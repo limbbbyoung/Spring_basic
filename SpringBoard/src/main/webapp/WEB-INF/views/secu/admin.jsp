@@ -20,5 +20,6 @@
 	
 	<hr/>
 	<a href="/customLogout">로그아웃 페이지 이동</a>
+	<a href="/board/list">글 목록 보러가기</a>
 </body>
 </html>

@@ -17,6 +17,9 @@ import com.ict.service.SecurityService;
 
 import lombok.extern.log4j.Log4j;
 
+// 스프링 시큐리티의 핵심은 간단하게 어노테이션을 걸어주는것만으로도 
+// 권한에 따른 페이지 접속을 관리할 수 있다는 점이다.
+// 직접 구성하면 까다로운 로직들을 간단하게 관리, 사용이 가능하다는 점이 큰 장점이다
 @Log4j
 @RequestMapping("/secu/*")
 @Controller
@@ -55,8 +58,10 @@ public class SecurityController {
 	
 	@PreAuthorize("permitAll")
 	@PostMapping("/join")
-	public void join(MemberVO vo, String[] role) {
-
+	public String join(MemberVO vo, String[] role) {
+		
+		log.info("입력 받은 회원의 이름 : " + vo.getUserName());
+		
 		String beforeCrPw = vo.getUserpw();
 		vo.setUserpw(pwen.encode(beforeCrPw));
 		log.info("암호화 후 : " + vo.getUserpw());
@@ -78,6 +83,8 @@ public class SecurityController {
 		log.info(vo.getAuthList());
 		// vo에 데이터가 전부 들어온 것을 확인했으므로 회원가입 로직 실행되도록 처리
 		service.insertMember(vo); 
+		
+		return "redirect:/board/list";
 	}
 	
 	

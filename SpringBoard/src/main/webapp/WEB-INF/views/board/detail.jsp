@@ -23,6 +23,8 @@
 	 	<input type="hidden" name="page" value="${param.page }">
 		<input type="hidden" name="searchType" value="${param.searchType}">
 		<input type="hidden" name="keyword" value="${param.keyword}">
+			<input type="hidden" name="${_csrf.parameterName }"
+								value="${_csrf.token }" />
 	 	<button class="btn btn-primary" type="submit">글 삭제하기</button>
  	</form>
  	
@@ -31,6 +33,8 @@
 	 	<input type="hidden" name="page" value="${param.page }">
 	    <input type="hidden" name="searchType" value="${param.searchType}">
 	    <input type="hidden" name="keyword" value="${param.keyword}">
+	    	<input type="hidden" name="${_csrf.parameterName }"
+								value="${_csrf.token }" />
 	 	<button class="btn btn-primary" type="submit">글 수정하기</button>
  	</form>
  	<a class="btn btn-primary" href="/board/list?page=${param.page }&searchType=${param.searchType }&keyword=${param.keyword}">글 목록</a>
@@ -174,38 +178,109 @@
 				// 화면 기능을 구성할 때 원하는 태그만을 골라서 디테일하게 기능을 구현하는데 있어서
 				// 어려움을 느낄 것으로 예상, 그러므로 이 점에 집중해서 화면단 기능 구성
 			}); 
+		
+		<!-- reply insert JS코드 -->
+		$("#replyAddBtn").on("click", function(){
 			
-			<!-- reply insert JS코드 -->
-			$("#replyAddBtn").on("click", function(){
-				
-				let replyer = $("#newReplyWriter").val();
-				let reply = $("#newReplyText").val();
-				
-				$.ajax({
-					type : 'post',
-					url : '/replies',
-					headers: {
-						"Content-Type" : "application/json",
-						"X-HTTP-Method-Override" : "POST"
-					},
-					dataType : 'text',
-					data : JSON.stringify({
-						bno : bno,
-						replyer : replyer,
-						reply : reply
-					}),
-					success : function(result){
-						if(result == "SUCCESS"){
-							
-							alert("등록되었습니다.");
-							getAllList();
-							$("#newReplyWriter").val('');
-							$("#newReplyText").val('');
-						}
+			let replyer = $("#newReplyWriter").val();
+			let reply = $("#newReplyText").val();
+			
+			var csrfHeaderName = "${_csrf.headerName}";
+			var csrfTokenValue="${_csrf.token}";
+			
+			$.ajax({
+				type : 'post',
+				url : '/replies',
+				beforeSend : function(xhr) {
+					 xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+					 },
+				headers: {
+					"Content-Type" : "application/json",
+					"X-HTTP-Method-Override" : "POST"
+				},
+				dataType : 'text',
+				data : JSON.stringify({
+					bno : bno,
+					replyer : replyer,
+					reply : reply
+				}),
+				success : function(result){
+					if(result == "SUCCESS"){
+						
+						alert("등록되었습니다.");
+						getAllList();
+						$("#newReplyWriter").val('');
+						$("#newReplyText").val('');
 					}
-					
-				});
+				}
+				
 			});
+		});
+			
+		// REPLY DELETE
+		$("#replyDelBtn").on("click", function(){
+			
+				    var rno = $(".modal-title").html();
+				    var csrfHeaderName = "${_csrf.headerName}";
+					var csrfTokenValue = "${_csrf.token}";
+	
+				    $.ajax({
+				        type : 'delete',
+				        url : '/replies/' + rno, 
+				        beforeSend : function(xhr) {
+						 xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+						 },
+				        header : {
+				            "Content-Type" : "application/json",
+				            "X-HTTP-Method-Override" : "DELETE"
+				        },
+				        dataType : 'text',
+				        success : function(result){
+				            console.log("result: " + result);
+				            if(result == 'SUCCESS'){
+				                alert("삭제 되었습니다.");
+				                // modal 닫기
+				                $('#modDiv').hide("slow");
+				                // 삭제된 이후 목록 가져와서 갱신하기
+				                getAllList();
+				            }
+				        }
+				    });
+				});
+			
+		// 수정로직
+		$("#replyModBtn").on("click", function(){
+				    var rno = $(".modal-title").html();
+				    console.log(rno);
+				    var replytext = $("#replyText").val();
+					// Spring Security를 위한 csrf 토큰 설정
+					var csrfHeaderName = "${_csrf.headerName}";
+					var csrfTokenValue = "${_csrf.token}";
+				    $.ajax({
+				        type : 'put',
+				        url : '/replies/' + rno, 
+				        beforeSend : function(xhr) {
+							 xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+						    },
+				        header : {
+				            "Content-Type" : "application/json",
+				            "X-HTTP-Method-Override" : "PUT"
+				        },
+				        contentType : "application/json",
+				        data : JSON.stringify({reply:replytext}),
+				        dataType : 'text',
+				        success : function(result){
+				            console.log("result: " + result);
+				            if(result == 'SUCCESS'){
+				                alert("수정 되었습니다.");
+				                // modal 닫기
+				                $('#modDiv').hide("slow");
+				                // 삭제된 이후 목록 가져와서 갱신하기
+				                getAllList();
+				            }
+				        }
+				    });
+				});
  	</script>
  	
  	<!-- modal 기능들 -->

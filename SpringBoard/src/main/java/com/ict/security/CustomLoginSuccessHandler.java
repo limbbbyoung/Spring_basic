@@ -17,6 +17,11 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
 
+	/* CustomLoginSuccessHandler 에서 로그인 로직과 관련된 Spring Security 처리를
+	 * 해주기 때문에 로그인과 관련돼서 오류를 찾고 문제점을 해결하고 싶다면 유심히 살펴볼 것
+	 * */
+	
+	
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {

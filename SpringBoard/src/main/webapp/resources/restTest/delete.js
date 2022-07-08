@@ -1,10 +1,16 @@
 
 $("#replyDelBtn").on("click", function(){
+	
 		    var rno = $(".modal-title").html();
+		    var csrfHeaderName = "${_csrf.headerName}";
+			var csrfTokenValue = "${_csrf.token}";
 
 		    $.ajax({
 		        type : 'delete',
 		        url : '/replies/' + rno, 
+		        beforeSend : function(xhr) {
+				 xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+				 },
 		        header : {
 		            "Content-Type" : "application/json",
 		            "X-HTTP-Method-Override" : "DELETE"

@@ -23,6 +23,8 @@
 	     <input type="hidden" name="page" value="${param.page }">
 	     <input type="hidden" name="searchType" value="${param.searchType}">
 	     <input type="hidden" name="keyword" value="${param.keyword}">
+	     	<input type="hidden" name="${_csrf.parameterName }"
+								value="${_csrf.token }" />
 	     <button type="submit" class="btn btn-success" >글 수정하기</button>
      </form>
     </div>

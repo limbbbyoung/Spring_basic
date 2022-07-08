@@ -8,9 +8,9 @@
 	resultMap으로 묶습니다. primary key를 id 태그에 넣고
 	result의 property에는 VO의 변수명, column은 DB상의 컬럼명을 넣습니다.
 	이러면 VO의 변수명과 DB상의 컬럼명이 달라도 매칭이 됩니다. -->
-	
-	<!-- 해당 resultMap은 변수명과 컬럼명이 다를 것을 대비해서 매칭할 수 
-	있도록 해주기 위함임 -->
+		
+		<!-- 해당 resultMap은 변수명과 컬럼명이 다를 것을 대비해서 매칭할 수 
+		있도록 해주기 위함임 -->
 		<id property="userid" column="userid"/>
 		<result property="userid" column="userid"/>
 		<result property="userpw" column="userpw"/>

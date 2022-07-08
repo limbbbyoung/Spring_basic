@@ -58,7 +58,6 @@ public class SecurityController {
 	@PreAuthorize("permitAll")
 	@PostMapping("/join")
 	public void join(MemberVO vo, String[] role) {
-		
 		// 실제로 코드를 짤 때 아래와 같이 디버깅을 세부적으로 해줄 필요는 없는데 
 		// 코드가 익숙해지고 이해될때까지는 디버깅을 섬세하게 해주는 것이 좋다.
 		// 코드의 사용이 익숙해지면 디버깅은 따로 해주지 않아도 됨

@@ -19,6 +19,8 @@
      글제목 : <input class="form-control" type="text" name="title" placeholder="제목을 입력해주세요." required><br/>
      작성자 : <input class="form-control" type="text" name= "writer" placeholder="작성자" required><br/>
      <p>글내용 : </p> <textarea class="form-control" cols="50" rows="12" name="content" required></textarea><br/>
+     	<input type="hidden" name="${_csrf.parameterName }"
+								value="${_csrf.token }" />
      <button type="submit" class="btn btn-success" >글 작성하기</button>
      </form>
     </div>
