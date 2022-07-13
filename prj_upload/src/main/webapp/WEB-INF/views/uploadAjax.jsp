@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" type="text/css" href="/resources/uploadAjax.css">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -46,7 +47,7 @@
 					return false;
 				}
 				return true;
-			}
+			} // checkExtension end
 			
 			let cloneObj = $(".uploadDiv").clone();
 			
@@ -78,6 +79,8 @@
 					dataType:'json',
 					type : 'POST',
 					success : function(result){
+						alert("uploaded");
+						
 						console.log(result);
 						
 						showUploadedFile(result);
@@ -85,8 +88,6 @@
 						$(".uploadDiv").html(cloneObj.html());
 					}
 				}); // ajax
-				
-				
 			});// uploadBtn onclick
 			
 			let uploadResult = $(".uploadResult ul");
@@ -94,14 +95,63 @@
 			function showUploadedFile(uploadResultArr){
 				let str = "";
 				
-				$(uploadResultArr).each(function(i, obj){
-					str += `<li>\${obj.fileName}</li>`;
+				$(uploadResultArr).each(function(i, obj){ // Json 데이터를 for문처럼 하나하나 풀어서 쓸 때 each를 활용, 
+					// i는 시작변수 0~ , obj는 앞에 uploadResultArr의 자료를 하나하나 가져오는 것
+					console.log(obj);
+					console.log(obj.image);
+					
+					if(!obj.image){
+						
+						var fileCallPath = encodeURIComponent(
+								obj.uploadPath + "/"
+							 + obj.uuid + "_" + obj.fileName);
+						
+						str += `<li><a href='/download?fileName=\${fileCallPath}'>
+						<img src='/resources/attach.png'>\${obj.fileName}</a>
+						<span data-file='\${fileCallPath}' data-type='file'>X</span>
+						</li>`;
+						
+					} else {
+						//str += `<li>\${obj.fileName}</li>`;
+						//  수정 후 코드
+						// 썸네일이 파일이 아닌 그림파일 다운로드를 위한
+						// fileCallPath 선언
+						var fileCallPath = encodeURIComponent(
+								obj.uploadPath + "/"
+							 + obj.uuid + "_" + obj.fileName);
+						
+						
+						// 썸네일 파일을 보여줄 수 있도록 fileCallPath 설정
+						let fileCallPath2 = encodeURIComponent(
+								obj.uploadPath + "/s_" 
+								+ obj.uuid + "_" + obj.fileName);
+						
+						console.log(fileCallPath2);
+						
+						str += `<li>
+									<a href='/download?fileName=\${fileCallPath}'>
+										<img src='/display?fileName=\${fileCallPath2}'>
+										\${obj.fileName}
+									</a>
+									<span data-file='\${fileCallPath}' data-type='image'>X</span>
+								</li>`;
+					}
 				});
 				uploadResult.append(str);
 			}// showUploadedFile
 			
-			
-			
+			$(".uploadResult").on("click", "span", function(e){
+				// 파일이름을 span태그 내부의 data-file에서 얻어와서 저장
+				var targetFile = $(this).data("file"); // .data를 쓰면 data 타입의 뒤쪽에 있는 정보들을 가져옴
+				// 이미지 여부를 span태그 내부의 data-type에서 얻어와서 저장
+				var type = $(this).data("type"); // ex. data-type의 정보, data-file의 정보
+				
+				// 클릭한 span태그와 엮어있는 li를 targetLi에 저장
+				var targetLi = $(this).closest("li");
+				
+				targetLi.remove();
+				
+			}); // click span
 			
 		});	// document ready
 	
