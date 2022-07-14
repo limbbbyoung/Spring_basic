@@ -116,12 +116,14 @@
 						//  수정 후 코드
 						// 썸네일이 파일이 아닌 그림파일 다운로드를 위한
 						// fileCallPath 선언
+						// 원본 파일인 fileCallPath
 						var fileCallPath = encodeURIComponent(
 								obj.uploadPath + "/"
 							 + obj.uuid + "_" + obj.fileName);
 						
 						
 						// 썸네일 파일을 보여줄 수 있도록 fileCallPath 설정
+						// 썸네일 파일인 fileCallPath2
 						let fileCallPath2 = encodeURIComponent(
 								obj.uploadPath + "/s_" 
 								+ obj.uuid + "_" + obj.fileName);
@@ -133,7 +135,7 @@
 										<img src='/display?fileName=\${fileCallPath2}'>
 										\${obj.fileName}
 									</a>
-									<span data-file='\${fileCallPath}' data-type='image'>X</span>
+									<span data-file='\${fileCallPath2}' data-type='image'>X</span>
 								</li>`;
 					}
 				});
@@ -149,8 +151,17 @@
 				// 클릭한 span태그와 엮어있는 li를 targetLi에 저장
 				var targetLi = $(this).closest("li");
 				
-				targetLi.remove();
-				
+				$.ajax({
+					url: '/deleteFile',
+					data: {fileName : targetFile, type:type},
+					dataType: 'text',
+					type: 'POST',
+					success: function(result){
+						alert(result);
+						// 클릭한 li요소를 화면에서 삭제함(파일삭제 후 화면에서도 삭제)
+						targetLi.remove();
+					}
+				}); // ajax
 			}); // click span
 			
 		});	// document ready
