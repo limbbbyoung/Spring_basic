@@ -23,4 +23,10 @@ public class SecurityServiceImpl implements SecurityService{
 		
 	}
 
+	@Override
+	public MemberVO read(String userid) {
+		// TODO Auto-generated method stub
+		return mapper.read(userid);
+	}
+
 }

@@ -82,8 +82,15 @@ public class BoardController {
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MEMBER')")
 	@PostMapping("/insert")
 	public String insertBoard(BoardVO board) {
-		log.info(board);
+
 		service.insert(board);
+		
+		log.info("=====================");
+		log.info("register : " + board);
+		if(board.getAttachList() != null) {
+			board.getAttachList().forEach(attach -> log.info(attach)); // AttachList 안에 있는 데이터를 
+		}															// attach라는 변수에 하나하나에 담아서 
+																	// log.info(attach)를 실행
 		// redirect를 사용해야 전체 글 목록을 로딩해온 다음 화면을 열어줍니다.
 		// 스프링 컨트롤러에서 리다이렉트를 할 때는 
 		// 목적주소 앞에 redirect: 을 추가로 붙입니다.

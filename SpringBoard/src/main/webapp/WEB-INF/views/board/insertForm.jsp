@@ -39,7 +39,7 @@
 			     <p>글내용 : </p> <textarea class="form-control" cols="50" rows="12" name="content" required></textarea><br/>
 			     	<input type="hidden" name="${_csrf.parameterName }"
 											value="${_csrf.token }" />
-			     <button type="submit" class="btn btn-success" >글 작성하기</button>
+			     <button type="submit" class="btn btn-success" id="submitBtn" >글 작성하기</button>
 			     </form>
 			</div><!-- .col-6 -->
 		</div><!-- .row -->
@@ -160,7 +160,8 @@
 						
 						console.log(fileCallPath2);
 						
-						str += `<li>
+						str += `<li data-path='\${obj.uploadPath}' data-uuid='\${obj.uuid}'
+								data-filename='\${obj.fileName}' data-type='\${obj.image}'>
 									<a href='/download?fileName=\${fileCallPath}'>
 										<img src='/display?fileName=\${fileCallPath2}'>
 										\${obj.fileName}
@@ -197,8 +198,38 @@
 				}); // ajax
 			}); // click span
 			
+			$("#submitBtn").on("click", function(e){
+				// 1. 버튼 기능 막습니다.
+				e.preventDefault();
+				
+				// 2. 폼태그를 가져옵니다.
+				let formObj = $("form");
+				
+				// 3. 첨부파일과 관련된 정보를 hidden태그들로 만들어 문자로 먼저 저장합니다.
+				let str="";
+				
+				$(".uploadResult ul li").each(function(i, obj){
+					
+					// $(obj)에 대해서만 .data()를 활용해 데이터를 얻어올 수 있음
+					let jobj = $(obj);
+					
+					str += `<input type='hidden' name='attachList[\${i}].fileName'
+								value='\${jobj.data("filename")}'>
+					        <input type='hidden' name='attachList[\${i}].uuid'
+								value='\${jobj.data("uuid")}'>
+					        <input type='hidden' name='attachList[\${i}].uploadPath'
+								value='\${jobj.data("path")}'>
+							<input type='hidden' name='attachList[\${i}].fileType'
+								value='\${jobj.data("type")}'>`;
+				}); 
+				// str에 정보가 잘 들어왔는지에 대한 디버깅
+				console.log(str);
+				// form요소 마지막에 str 요소를 추가
+				formObj.append(str);
+				// 5. formObj.submit()을 이용해 제출기능이 실행되도록 합니다.
+				formObj.submit();
+			}); // click submitBtn end
 		});	// document ready
-	
 	</script>
 </body>
 </html>

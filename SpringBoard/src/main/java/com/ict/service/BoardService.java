@@ -32,5 +32,7 @@ public interface BoardService {
 	
 	// 전체 글 갯수 가져오기
 	public Long getBoardCount(SearchCriteria cri);
+	
+	// DB에 있던 이미지를 다시 글에 표출시키기
 
 }
