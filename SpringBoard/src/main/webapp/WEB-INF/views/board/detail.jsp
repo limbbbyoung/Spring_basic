@@ -2,10 +2,11 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+<head>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/resources/restTest/modal.css">
-<head>
+<link rel="stylesheet" type="text/css" href="/resources/uploadResultForDetail.css">
 <style>
 	form{padding-bottom:10px; }
 </style>
@@ -13,74 +14,53 @@
 <title>boardDetail</title>
 </head>
 <body>
- 	${board} <br/>
- 	<hr>
- 	<h3>${board.title }</h3> <br/>
- 	글쓴이 : ${board.writer } <br/>
- 	글내용 : <textarea rows="20" cols="50">${board.content }</textarea>
- 	<form action="/board/delete" method="post">
-	 	<input type="hidden" value="${board.bno }" name="bno">
-	 	<input type="hidden" name="page" value="${param.page }">
-		<input type="hidden" name="searchType" value="${param.searchType}">
-		<input type="hidden" name="keyword" value="${param.keyword}">
-			<input type="hidden" name="${_csrf.parameterName }"
-								value="${_csrf.token }" />
-	 	<button class="btn btn-primary" type="submit">글 삭제하기</button>
- 	</form>
- 	
- 	<form action="/board/updateForm" method="post">
-	 	<input type="hidden" value="${board.bno }" name="bno">
-	 	<input type="hidden" name="page" value="${param.page }">
-	    <input type="hidden" name="searchType" value="${param.searchType}">
-	    <input type="hidden" name="keyword" value="${param.keyword}">
-	    	<input type="hidden" name="${_csrf.parameterName }"
-								value="${_csrf.token }" />
-	 	<button class="btn btn-primary" type="submit">글 수정하기</button>
- 	</form>
- 	<a class="btn btn-primary" href="/board/list?page=${param.page }&searchType=${param.searchType }&keyword=${param.keyword}">글 목록</a>
- 	<br/>
- 	<hr>
- 	
- 	<!-- 댓글 -->
- 	<div class="row">
- 		<h3 class="text-primary">댓글</h3>
- 		<div id="replies">
- 			<!-- 댓글이 들어갈 위치 -->
- 		</div>
- 	</div><!-- row -->
- 		
- 	<br/>
- 		<!-- 모달로 된 addReply -->
- 		<!-- Button trigger modal 
-		<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-		  ADD REPLY
-		</button>-->
-		
-		<!-- Modal 
-		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		  <div class="modal-dialog">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <h5 class="modal-title2" id="exampleModalLabel">댓긋을 작성해주세요</h5>
-		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-		      </div>
-		      <div class="modal-body">
-		        <div>
-				   <div>
-				      REPLYER <input type="text" name="replyer" id="newReplyWriter">
-				   </div>
-				   <div>
-				      REPLY TEXT <input type="text" name="reply" id="newReplyText">
-				   </div>
-				</div>
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-		        <button type="button" id="replyAddBtn" class="btn btn-primary">ADD REPLY</button>
-		      </div>
-		    </div>
-		  </div>
-		</div>-->
+	 	${board} <br/>
+	 	<hr>
+	 	<h3>${board.title }</h3> <br/>
+	 	글쓴이 : ${board.writer } <br/>
+	 	글내용 : <textarea rows="20" cols="50">${board.content }</textarea>
+	 	<form action="/board/delete" method="post">
+		 	<input type="hidden" value="${board.bno }" name="bno">
+		 	<input type="hidden" name="page" value="${param.page }">
+			<input type="hidden" name="searchType" value="${param.searchType}">
+			<input type="hidden" name="keyword" value="${param.keyword}">
+				<input type="hidden" name="${_csrf.parameterName }"
+									value="${_csrf.token }" />
+		 	<button class="btn btn-primary" type="submit">글 삭제하기</button>
+	 	</form>
+	 	
+	 	<form action="/board/updateForm" method="post">
+		 	<input type="hidden" value="${board.bno }" name="bno">
+		 	<input type="hidden" name="page" value="${param.page }">
+		    <input type="hidden" name="searchType" value="${param.searchType}">
+		    <input type="hidden" name="keyword" value="${param.keyword}">
+		    	<input type="hidden" name="${_csrf.parameterName }"
+									value="${_csrf.token }" />
+		 	<button class="btn btn-primary" type="submit">글 수정하기</button>
+	 	</form>
+	 	<a class="btn btn-primary" href="/board/list?page=${param.page }&searchType=${param.searchType }&keyword=${param.keyword}">글 목록</a>
+	 	<br/>
+	 	<hr>
+	 	
+	 	<!-- 댓글 -->
+	 	<div class="row">
+	 		<h3 class="text-primary">댓글</h3>
+	 		<div id="replies">
+	 			<!-- 댓글이 들어갈 위치 -->
+	 		</div>
+	 	</div><!-- row -->
+	 		
+	 	<!-- 첨부 파일 -->
+	 	<div class="row">
+	 		<h3 class="text-primary">첨부파일</h3>
+	 		<div id="uploadResult">
+	 			<ul>
+	 				<!-- 첨부파일이 들어갈 위치 -->
+	 			</ul>
+	 		</div>
+	 	</div><!-- row -->
+	 	<br>
+	 	
 		<hr>
 		<div class="row box-box-success">
 			<div class="box-header">
@@ -280,7 +260,57 @@
 				            }
 				        }
 				    });
+				}); // 수정로직
+				
+				
+				// 익명함수 선언 및 호출
+				// 우선 함수이기 때문에 호출한다는 점을 명시하기 위해 마지막에 ()를 추가로 붙여준다.
+				// 파일 첨부 후 해당 글의 첨부된 파일의 데이터 가져오기
+				(function(){
+					$.getJSON("/board/getAttachList", {bno:bno}, function(arr){
+						console.log(arr);
+						
+						let str = "";
+						
+						$(arr).each(function(i, attach){
+							// image
+							if(attach.fileType){
+								let fileCallPath = encodeURIComponent(attach.uploadPath + "/s_" +
+										attach.uuid + "_" + attach.fileName);
+								console.log(fileCallPath);
+								
+								str += `<li data-path='\${attach.uploadPath}' data-uuid='\${attach.uuid}'
+											data-filename='\${attach.fileName}' data-type='\${attach.fileType}'>
+											<div>
+												<img src='/display?fileName=\${fileCallPath}'>
+											</div>
+										</li>`;
+							} else { 
+								str += `<li data-path='\${attach.uploadPath}' data-uuid='\${attach.uuid}'
+											data-filename='\${attach.fileName}' data-type='\${attach.fileType}'>
+											<div>
+												<span>\${attach.fileName}</span><br>
+												<img src='/resources/attach.png' width='100px' height='100px'>
+											</div>
+										</li>`;
+							}
+						}); // each 반복문 닫는 부분
+						console.log(str);
+						$("#uploadResult ul").html(str);
+					}); // end getJSON
+				})(); // end anonymous
+				
+				$("#uploadResult").on("click", "li", function(e){
+					
+					let liObj = $(this);
+					
+					let path = encodeURIComponent(liObj.data("path") + "/" + liObj.data("uuid")
+							+ "_" + liObj.data("filename"));
+					
+						// download
+						self.location = "/download?fileName=" + path;
 				});
+				
  	</script>
  	
  	<!-- modal 기능들 -->

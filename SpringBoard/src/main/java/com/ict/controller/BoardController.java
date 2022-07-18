@@ -1,8 +1,14 @@
 package com.ict.controller;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,8 +17,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.ict.persistence.BoardAttachVO;
 import com.ict.persistence.BoardVO;
 import com.ict.persistence.PageMaker;
 import com.ict.persistence.SearchCriteria;
@@ -100,10 +108,21 @@ public class BoardController {
 	// 글삭제 post방식으로 처리하도록 합니다.
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	@PostMapping("/delete")
-	public String deleteBoard(Long bno, SearchCriteria cri, RedirectAttributes rttr) {
+	public String deleteBoard(Long bno, SearchCriteria cri, RedirectAttributes rttr, Model model) {
+		// 삭제할 로직의 첨부파일 목록을 먼저 다 가지고 옵니다.
+		List<BoardAttachVO> attachList = service.getAttachList(bno);
+		
 		// 삭제 후 리스트로 돌아갈 수 있도록 내부 로직을 만들어주시고
 		// 디테일 페이지에 삭제 요청을 넣을 수 있는 폼을 만들어주세요.
+		// 아래 로직은 DB에 있던 정보만 삭제함
 		service.delete(bno);
+		
+		// attachList에 들어있는 정보를 토대로 C: 의 파일까지 삭제
+		// 단 첨부파일이 없는데도 삭제로직을 돌릴 필요는 없으므로
+		// 미리 첨부파일이 있는지 여부를 확인해서 돌립니다
+		if(attachList != null || attachList.size() > 0) {
+			deleteFiles(attachList);
+		}
 		
 		rttr.addAttribute("page", cri.getPage());
 		rttr.addAttribute("searchType", cri.getSearchType());
@@ -137,7 +156,44 @@ public class BoardController {
 		rttr.addAttribute("searchType", cri.getSearchType());
 		rttr.addAttribute("keyword", cri.getKeyword());
 		return "redirect:/board/detail";
+	} // updateBoard end
+	
+	@GetMapping(value="/getAttachList", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@ResponseBody
+	public ResponseEntity<List<BoardAttachVO>> getAttachList(Long bno){
+		
+		return new ResponseEntity<>(service.getAttachList(bno), HttpStatus.OK);
+	} // getAttachList end
+	
+	// 파일 폴더에서 첨부 파일에 대한 데이터 삭제를 위한 메서드, 삭제 보조 메서드
+	private void deleteFiles(List<BoardAttachVO> attachList) {
+		
+		if(attachList == null || attachList.size() == 0) {
+			return;
+		}
+		
+		log.info(attachList);
+		
+		attachList.forEach(attach -> {
+			try {
+				Path file = Paths.get("C:\\upload_data\\temp\\" + attach.getUploadPath() + 
+									"\\" + attach.getUuid() + "_" + attach.getFileName());
+				
+				Files.deleteIfExists(file);
+				
+				if(Files.probeContentType(file).startsWith("image")) {
+					
+					Path thumbNail = Paths.get("C:\\upload_data\\temp\\" + attach.getUploadPath()
+												+ "\\s_" + attach.getUuid() + "_" + attach.getFileName());
+					
+					Files.delete(thumbNail);
+				}
+			} catch(Exception e) {
+				log.error(e.getMessage());
+			}// end catch
+		}); // end foreach
 	}
+	
 }
 
 

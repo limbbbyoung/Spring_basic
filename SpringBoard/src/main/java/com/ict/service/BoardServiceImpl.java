@@ -8,6 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ict.mapper.BoardAttachMapper;
 import com.ict.mapper.BoardMapper;
+import com.ict.mapper.ReplyMapper;
+import com.ict.persistence.BoardAttachVO;
 import com.ict.persistence.BoardVO;
 import com.ict.persistence.Criteria;
 import com.ict.persistence.SearchCriteria;
@@ -22,6 +24,9 @@ public class BoardServiceImpl implements BoardService{
 	
 	@Autowired
 	private BoardAttachMapper attachMapper;
+	
+	@Autowired
+	private ReplyMapper replyMapper;
 
 	@Override
 	public List<BoardVO> getList(SearchCriteria cri) {
@@ -43,8 +48,13 @@ public class BoardServiceImpl implements BoardService{
 		});
 	}
 
+	@Transactional
 	@Override
 	public void delete(long bno) {
+		replyMapper.deleteAll(bno);
+		
+		attachMapper.deleteAll(bno);
+		
 		mapper.delete(bno);
 	}
 
@@ -62,6 +72,11 @@ public class BoardServiceImpl implements BoardService{
 	public Long getBoardCount(SearchCriteria cri) {
 		Long boardCount = mapper.getBoardCount(cri);
 		return boardCount;
+	}
+
+	@Override
+	public List<BoardAttachVO> getAttachList(Long bno) {
+		return attachMapper.findByBno(bno);
 	}
 	
 	

@@ -2,6 +2,7 @@ package com.ict.service;
 
 import java.util.List;
 
+import com.ict.persistence.BoardAttachVO;
 import com.ict.persistence.BoardVO;
 import com.ict.persistence.Criteria;
 import com.ict.persistence.SearchCriteria;
@@ -34,5 +35,6 @@ public interface BoardService {
 	public Long getBoardCount(SearchCriteria cri);
 	
 	// DB에 있던 이미지를 다시 글에 표출시키기
+	public List<BoardAttachVO> getAttachList(Long bno);
 
 }

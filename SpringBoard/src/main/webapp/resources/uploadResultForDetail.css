@@ -1,0 +1,27 @@
+@charset "UTF-8";
+	
+	#uploadResult {
+		width: 100%;
+		background-color: gray;
+		}
+	
+	#uploadResult ul{
+		display: flex;
+		flex-flow: row;
+		justify-content: center;
+		align-items: center;
+		}
+	
+	#uploadResult ul li {
+		list-style: none;
+		padding: 10px;
+		align-content: center;
+		text-align: center;
+		}
+		
+	#uploadResult ul li img{
+		width: 100px;
+		}
+		
+		
+				
