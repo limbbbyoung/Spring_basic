@@ -2,6 +2,7 @@ package com.ict.service;
 
 import java.util.List;
 
+import org.apache.ibatis.type.MappedJdbcTypes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -58,10 +59,20 @@ public class BoardServiceImpl implements BoardService{
 		mapper.delete(bno);
 	}
 
+	@Transactional
 	@Override
 	public void update(BoardVO vo) {
+		
+		attachMapper.deleteAll(vo.getBno());
+		
+		if(vo.getAttachList().size() > 0) {
+			vo.getAttachList().forEach(attach -> {
+				attach.setBno(vo.getBno());
+				attachMapper.insert(attach);
+			});
+		}
 		mapper.update(vo);
-	}
+	} // update end
 
 	@Override
 	public BoardVO getDetail(long bno) {

@@ -20,7 +20,7 @@
 	 	글쓴이 : ${board.writer } <br/>
 	 	글내용 : <textarea rows="20" cols="50">${board.content }</textarea>
 	 	<form action="/board/delete" method="post">
-		 	<input type="hidden" value="${board.bno }" name="bno">
+		 	<input type="hidden" name="bno" value="${board.bno }">
 		 	<input type="hidden" name="page" value="${param.page }">
 			<input type="hidden" name="searchType" value="${param.searchType}">
 			<input type="hidden" name="keyword" value="${param.keyword}">
@@ -34,7 +34,7 @@
 		 	<input type="hidden" name="page" value="${param.page }">
 		    <input type="hidden" name="searchType" value="${param.searchType}">
 		    <input type="hidden" name="keyword" value="${param.keyword}">
-		    	<input type="hidden" name="${_csrf.parameterName }"
+		    <input type="hidden" name="${_csrf.parameterName }"
 									value="${_csrf.token }" />
 		 	<button class="btn btn-primary" type="submit">글 수정하기</button>
 	 	</form>

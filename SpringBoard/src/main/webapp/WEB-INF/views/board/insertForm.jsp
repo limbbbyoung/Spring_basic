@@ -229,6 +229,7 @@
 				// 5. formObj.submit()을 이용해 제출기능이 실행되도록 합니다.
 				formObj.submit();
 			}); // click submitBtn end
+			
 		});	// document ready
 	</script>
 </body>
