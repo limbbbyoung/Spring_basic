@@ -3,9 +3,13 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.3.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 	<!-- Spring에 의하여 생성되고 관리되는 자바 객체를 Bean -->
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<!-- Root Context: defines shared resources visible to all other web components -->
@@ -32,4 +36,11 @@
 	
 	<!-- 서비스 등의 요소는 Bean Container에 넣어줘야 @Autowired를 받을 수 있습니다. -->
 	<context:component-scan base-package="com.ict.service"></context:component-scan>
+	
+	<tx:annotation-driven/>
+	
+	<task:annotation-driven/>
+	
+	<!-- Task에 관련된 Component Scan -->
+	<context:component-scan base-package="com.ict.task"></context:component-scan>
 </beans>
