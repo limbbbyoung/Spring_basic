@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 위의 스키마 작성 후, 어떤 인터페이스의 메서드를 쿼리문과 
+연결해 줄지 아래와 같이 인터페이스 파일부터 mapper태그로 연결합니다. -->
+<mapper namespace="com.ict.mapper.movieMapper">
+	
+	<!-- Oracle 영진위 영화 목록 -->
+	<select id="getList" resultType="com.ict.persistence.MovieVO">
+			<![CDATA[SELECT * FROM movie_tbl WHERE rnum < 50]]>
+	</select>
+	
+	<!-- board의 경우, 글쓰기 -->
+	<insert id="insert">
+		<selectKey keyProperty="bno" keyColumn="bno" resultType="Long" order="BEFORE">
+			SELECT board_num.nextval FROM dual
+		</selectKey>
+		<!-- #{bno}에는 board_num의 nextval 결과값이 들어있습니다. -->
+		INSERT INTO board_tbl(bno, title, content, writer) VALUES
+			(#{bno}, #{title}, #{content}, #{writer})
+	</insert>
+	
+	<!-- board의 경우, 글 삭제하기 -->
+	<delete id="delete">
+		DELETE FROM board_tbl WHERE bno=#{bno}
+	</delete>
+	
+	<!-- board의 경우, 글 수정하기 -->
+	<update id="update">
+		UPDATE board_tbl SET title=#{title}, content=#{content}, writer=#{writer},
+			updatedate=SYSDATE WHERE bno=#{bno}
+	</update>
+	
+	<!-- board의 경우, 상세정보 -->
+	<select id="getDetail" resultType="com.ict.persistence.BoardVO">
+		<![CDATA[
+			SELECT * FROM board_tbl WHERE bno=#{bno}
+		]]>
+	</select>
+	
+</mapper>

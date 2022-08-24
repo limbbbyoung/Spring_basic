@@ -165,6 +165,7 @@ public class BoardController {
 		return new ResponseEntity<>(service.getAttachList(bno), HttpStatus.OK);
 	} // getAttachList end
 	
+	
 	// 파일 폴더에서 첨부 파일에 대한 데이터 삭제를 위한 메서드, 삭제 보조 메서드
 	private void deleteFiles(List<BoardAttachVO> attachList) {
 		
@@ -192,7 +193,7 @@ public class BoardController {
 				log.error(e.getMessage());
 			}// end catch
 		}); // end foreach
-	}
+	} // deleteFiles END
 	
 }
 

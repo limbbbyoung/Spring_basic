@@ -39,7 +39,7 @@ public class FileCheckTask {
 	} // getFolderYesterday end
 	
 
-	@Scheduled(cron="0 * * * * *") // 크론 설정은 다음과 같다. 초(0~59), 분(0~59), 일(1~31), 달(1~12), 요일(1~7)
+	@Scheduled(cron="0 0 2 * * *") // 크론 설정은 다음과 같다. 초(0~59), 분(0~59), 일(1~31), 달(1~12), 요일(1~7)
 									//, (연도)(특수), *은 와일드카드
 	public void checkFiles() throws Exception {
 		

@@ -29,7 +29,7 @@ public class BoardServiceTests {
 		}
 		
 		// insert도 테스트 한 번 해주세요.
-		// @Test
+		// @Testc
 		public void insertTest() {
 			BoardVO vo = new BoardVO();
 			vo.setTitle("두번째로 새로 넣는 글");
